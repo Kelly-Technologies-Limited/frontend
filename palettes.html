@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelly Technologies — Palette Studies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-serif: "Fraunces", Georgia, serif;
+      --font-sans:  "Inter", -apple-system, system-ui, sans-serif;
+      --font-mono:  "JetBrains Mono", ui-monospace, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: #ECECEC;
+      color: #111;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+    .top {
+      margin-bottom: 3rem;
+    }
+    .top .kicker {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #666;
+      margin: 0 0 1rem;
+    }
+    .top h1 {
+      font-family: var(--font-serif);
+      font-weight: 350;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin: 0 0 .75rem;
+      max-width: 22ch;
+    }
+    .top p {
+      max-width: 60ch;
+      color: #444;
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    /* Each palette demo */
+    .palette {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+      align-items: stretch;
+    }
+    @media (max-width: 880px) {
+      .palette { grid-template-columns: 1fr; }
+    }
+
+    .meta {
+      background: #fff;
+      border: 1px solid #DDD;
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .meta .num {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      color: #888;
+      margin: 0 0 .5rem;
+    }
+    .meta h2 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.4rem;
+      margin: 0 0 .35rem;
+      letter-spacing: -.01em;
+    }
+    .meta .ref {
+      color: #666;
+      font-size: .85rem;
+      margin: 0 0 1rem;
+    }
+    .meta .why {
+      color: #333;
+      font-size: .88rem;
+      line-height: 1.55;
+      margin: 0 0 1.25rem;
+      flex: 1;
+    }
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+    .sw {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      position: relative;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .sw::after {
+      content: attr(data-hex);
+      position: absolute;
+      bottom: -18px;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: .58rem;
+      color: #777;
+    }
+    .swatches { margin-bottom: 22px; }
+
+    /* Demo panel — uses palette via CSS variables on .demo */
+    .demo {
+      border-radius: 14px;
+      padding: 2rem 2.25rem 2.25rem;
+      background: var(--p-bg);
+      color: var(--p-ink);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--p-line);
+      min-height: 320px;
+    }
+    .demo .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-size: .85rem;
+    }
+    .demo .nav .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 500;
+      color: var(--p-ink);
+    }
+    .demo .nav .brand .dot {
+      width: 22px; height: 22px; border-radius: 5px;
+      background: var(--p-ink);
+      color: var(--p-bg);
+      display: grid; place-items: center;
+      font-family: var(--font-mono);
+      font-size: .65rem;
+    }
+    .demo .nav .links {
+      display: flex; gap: 1.25rem;
+      color: var(--p-soft);
+      font-size: .82rem;
+    }
+    .demo .eyebrow {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--p-soft);
+      margin: 0 0 .75rem;
+    }
+    .demo h3 {
+      font-family: var(--font-serif);
+      font-weight: 350;
+      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin: 0 0 1rem;
+      max-width: 22ch;
+      color: var(--p-ink);
+    }
+    .demo h3 em {
+      color: var(--p-accent);
+      font-style: italic;
+      font-weight: 350;
+    }
+    .demo .sub {
+      color: var(--p-soft);
+      max-width: 50ch;
+      margin: 0 0 1.5rem;
+      font-size: .94rem;
+      line-height: 1.55;
+    }
+    .demo .row {
+      display: flex; gap: .75rem; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .demo .btn {
+      padding: .6rem 1.05rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 500;
+      transition: transform .2s;
+    }
+    .demo .btn:hover { transform: translateY(-1px); }
+    .demo .btn-primary {
+      background: var(--p-accent);
+      color: var(--p-accent-ink);
+      border: 1px solid var(--p-accent);
+    }
+    .demo .btn-ghost {
+      background: transparent;
+      color: var(--p-ink);
+      border: 1px solid var(--p-line-strong);
+    }
+    .demo .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--p-line);
+    }
+    .demo .stat .l {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--p-soft);
+      margin: 0 0 .25rem;
+    }
+    .demo .stat .v {
+      font-family: var(--font-serif);
+      font-size: .98rem;
+      color: var(--p-ink);
+    }
+
+    /* ============== Palette tokens ============== */
+
+    /* 1 — Midnight & Brass */
+    .p1 {
+      --p-bg:           #0E1A2B;
+      --p-ink:          #F4EDD8;
+      --p-soft:         rgba(244,237,216,.62);
+      --p-line:         rgba(244,237,216,.10);
+      --p-line-strong:  rgba(244,237,216,.30);
+      --p-accent:       #C9A24B;
+      --p-accent-ink:   #0E1A2B;
+    }
+
+    /* 2 — Carbon & Electric */
+    .p2 {
+      --p-bg:           #0A0A0C;
+      --p-ink:          #F2F2F2;
+      --p-soft:         rgba(242,242,242,.55);
+      --p-line:         rgba(255,255,255,.08);
+      --p-line-strong:  rgba(255,255,255,.25);
+      --p-accent:       #4DE0E0;
+      --p-accent-ink:   #0A0A0C;
+    }
+
+    /* 3 — Ivory & Oxblood */
+    .p3 {
+      --p-bg:           #F4EFE3;
+      --p-ink:          #1A1310;
+      --p-soft:         rgba(26,19,16,.62);
+      --p-line:         rgba(26,19,16,.12);
+      --p-line-strong:  rgba(26,19,16,.35);
+      --p-accent:       #7A1F1F;
+      --p-accent-ink:   #F4EFE3;
+    }
+
+    /* 4 — Slate & Acid */
+    .p4 {
+      --p-bg:           #14181D;
+      --p-ink:          #E6E9EE;
+      --p-soft:         rgba(230,233,238,.55);
+      --p-line:         rgba(230,233,238,.08);
+      --p-line-strong:  rgba(230,233,238,.28);
+      --p-accent:       #C7F250;
+      --p-accent-ink:   #14181D;
+    }
+
+    /* 5 — Pearl & Graphite */
+    .p5 {
+      --p-bg:           #F2F0EC;
+      --p-ink:          #1B1B1B;
+      --p-soft:         rgba(27,27,27,.58);
+      --p-line:         rgba(27,27,27,.10);
+      --p-line-strong:  rgba(27,27,27,.30);
+      --p-accent:       #B07A4A;
+      --p-accent-ink:   #F2F0EC;
+    }
+
+    /* 6a — Aubergine & Orchid (dark, modern) */
+    .p6a {
+      --p-bg:           #1A1530;
+      --p-ink:          #EDE7F2;
+      --p-soft:         rgba(237,231,242,.60);
+      --p-line:         rgba(237,231,242,.08);
+      --p-line-strong:  rgba(237,231,242,.28);
+      --p-accent:       #B89BE0;
+      --p-accent-ink:   #1A1530;
+    }
+
+    /* 6b — Bone & Plum (light, editorial) */
+    .p6b {
+      --p-bg:           #F1ECEF;
+      --p-ink:          #1F1226;
+      --p-soft:         rgba(31,18,38,.60);
+      --p-line:         rgba(31,18,38,.10);
+      --p-line-strong:  rgba(31,18,38,.32);
+      --p-accent:       #5B2C6F;
+      --p-accent-ink:   #F1ECEF;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #D5D5D5;
+      font-size: .9rem;
+      color: #555;
+      max-width: 70ch;
+    }
+    .footer-note code {
+      font-family: var(--font-mono);
+      background: #fff;
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid #DDD;
+      font-size: .82rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <p class="kicker">Kelly Technologies / Brand exploration</p>
+      <h1>Five color systems for a quant fund.</h1>
+      <p>Each card pairs a palette spec with a live mini-hero so you can compare them side-by-side. Pick a number and I'll roll it into the production site.</p>
+    </div>
+
+    <!-- 1 -->
+    <section class="palette">
+      <div class="meta">
+        <p class="num">01</p>
+        <h2>Midnight &amp; Brass</h2>
+        <p class="ref">Citadel · Brevan Howard · institutional gravitas</p>
+        <p class="why">Deep navy carries old-money authority; brushed brass accent reads as serious, premium, and slightly conservative — a "we manage real capital" signal.</p>
+        <div class="swatches">
+          <div class="sw" style="background:#0E1A2B" data-hex="#0E1A2B"></div>
+          <div class="sw" style="background:#142536" data-hex="#142536"></div>
+          <div class="sw" style="background:#F4EDD8" data-hex="#F4EDD8"></div>
+          <div class="sw" style="background:#C9A24B" data-hex="#C9A24B"></div>
+          <div class="sw" style="background:#8B6E2E" data-hex="#8B6E2E"></div>
+        </div>
+      </div>
+      <div class="demo p1">
+        <div class="nav">
+          <span class="brand"><span class="dot">K</span> Kelly Technologies</span>
+          <span class="links"><span>Company</span><span>Team</span><span>Strategies</span></span>
+        </div>
+        <p class="eyebrow">Hong Kong SAR · Established 2025</p>
+        <h3>Systematic <em>volatility</em> strategies in S&amp;P 500 futures and index options.</h3>
+        <p class="sub">Position sizing rooted in the Kelly criterion — capital allocated to the informational content of each opportunity.</p>
+        <div class="row">
+          <a class="btn btn-primary">Our strategies</a>
+          <a class="btn btn-ghost">Research approach →</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><p class="l">Markets</p><p class="v">SPX · SPXW · ES</p></div>
+          <div class="stat"><p class="l">Mandate</p><p class="v">Vol &amp; Directional</p></div>
+          <div class="stat"><p class="l">HQ</p><p class="v">Hong Kong SAR</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="palette">
+      <div class="meta">
+        <p class="num">02</p>
+        <h2>Carbon &amp; Electric</h2>
+        <p class="ref">Two Sigma · Hudson River · pure quant tech</p>
+        <p class="why">Near-black carbon background with a single electric cyan accent. Reads as "trading terminal," HFT, and engineering-first. Best if you want strong tech / system-quant signaling.</p>
+        <div class="swatches">
+          <div class="sw" style="background:#0A0A0C" data-hex="#0A0A0C"></div>
+          <div class="sw" style="background:#16161A" data-hex="#16161A"></div>
+          <div class="sw" style="background:#F2F2F2" data-hex="#F2F2F2"></div>
+          <div class="sw" style="background:#4DE0E0" data-hex="#4DE0E0"></div>
+          <div class="sw" style="background:#2A8A8A" data-hex="#2A8A8A"></div>
+        </div>
+      </div>
+      <div class="demo p2">
+        <div class="nav">
+          <span class="brand"><span class="dot">K</span> Kelly Technologies</span>
+          <span class="links"><span>Company</span><span>Team</span><span>Strategies</span></span>
+        </div>
+        <p class="eyebrow">Hong Kong SAR · Established 2025</p>
+        <h3>Systematic <em>volatility</em> strategies in S&amp;P 500 futures and index options.</h3>
+        <p class="sub">Position sizing rooted in the Kelly criterion — capital allocated to the informational content of each opportunity.</p>
+        <div class="row">
+          <a class="btn btn-primary">Our strategies</a>
+          <a class="btn btn-ghost">Research approach →</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><p class="l">Markets</p><p class="v">SPX · SPXW · ES</p></div>
+          <div class="stat"><p class="l">Mandate</p><p class="v">Vol &amp; Directional</p></div>
+          <div class="stat"><p class="l">HQ</p><p class="v">Hong Kong SAR</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="palette">
+      <div class="meta">
+        <p class="num">03</p>
+        <h2>Ivory &amp; Oxblood</h2>
+        <p class="ref">Jane Street · classic Wall Street</p>
+        <p class="why">Warm ivory paper with a single deep oxblood red accent. Editorial, slightly literary, very different from Anthropic's terracotta — sharper, older, more "trading floor heritage."</p>
+        <div class="swatches">
+          <div class="sw" style="background:#F4EFE3" data-hex="#F4EFE3"></div>
+          <div class="sw" style="background:#EAE3D2" data-hex="#EAE3D2"></div>
+          <div class="sw" style="background:#1A1310" data-hex="#1A1310"></div>
+          <div class="sw" style="background:#7A1F1F" data-hex="#7A1F1F"></div>
+          <div class="sw" style="background:#3D0F0F" data-hex="#3D0F0F"></div>
+        </div>
+      </div>
+      <div class="demo p3">
+        <div class="nav">
+          <span class="brand"><span class="dot">K</span> Kelly Technologies</span>
+          <span class="links"><span>Company</span><span>Team</span><span>Strategies</span></span>
+        </div>
+        <p class="eyebrow">Hong Kong SAR · Established 2025</p>
+        <h3>Systematic <em>volatility</em> strategies in S&amp;P 500 futures and index options.</h3>
+        <p class="sub">Position sizing rooted in the Kelly criterion — capital allocated to the informational content of each opportunity.</p>
+        <div class="row">
+          <a class="btn btn-primary">Our strategies</a>
+          <a class="btn btn-ghost">Research approach →</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><p class="l">Markets</p><p class="v">SPX · SPXW · ES</p></div>
+          <div class="stat"><p class="l">Mandate</p><p class="v">Vol &amp; Directional</p></div>
+          <div class="stat"><p class="l">HQ</p><p class="v">Hong Kong SAR</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="palette">
+      <div class="meta">
+        <p class="num">04</p>
+        <h2>Slate &amp; Acid</h2>
+        <p class="ref">D.E. Shaw · Jump Trading · HFT engineer</p>
+        <p class="why">Cool slate background with a sharp acid-lime accent. Most aggressively "algo / low-latency / engineer-built" — strong appeal to technical talent and quant-savvy LPs.</p>
+        <div class="swatches">
+          <div class="sw" style="background:#14181D" data-hex="#14181D"></div>
+          <div class="sw" style="background:#1F252C" data-hex="#1F252C"></div>
+          <div class="sw" style="background:#E6E9EE" data-hex="#E6E9EE"></div>
+          <div class="sw" style="background:#C7F250" data-hex="#C7F250"></div>
+          <div class="sw" style="background:#7DA62A" data-hex="#7DA62A"></div>
+        </div>
+      </div>
+      <div class="demo p4">
+        <div class="nav">
+          <span class="brand"><span class="dot">K</span> Kelly Technologies</span>
+          <span class="links"><span>Company</span><span>Team</span><span>Strategies</span></span>
+        </div>
+        <p class="eyebrow">Hong Kong SAR · Established 2025</p>
+        <h3>Systematic <em>volatility</em> strategies in S&amp;P 500 futures and index options.</h3>
+        <p class="sub">Position sizing rooted in the Kelly criterion — capital allocated to the informational content of each opportunity.</p>
+        <div class="row">
+          <a class="btn btn-primary">Our strategies</a>
+          <a class="btn btn-ghost">Research approach →</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><p class="l">Markets</p><p class="v">SPX · SPXW · ES</p></div>
+          <div class="stat"><p class="l">Mandate</p><p class="v">Vol &amp; Directional</p></div>
+          <div class="stat"><p class="l">HQ</p><p class="v">Hong Kong SAR</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="palette">
+      <div class="meta">
+        <p class="num">05</p>
+        <h2>Pearl &amp; Graphite</h2>
+        <p class="ref">Bridgewater · Point72 · ultra-minimal</p>
+        <p class="why">Almost monochrome — pearl background, graphite text, and a muted antique-copper accent used very sparingly. Reads as understated, expensive, "we don't need to shout."</p>
+        <div class="swatches">
+          <div class="sw" style="background:#F2F0EC" data-hex="#F2F0EC"></div>
+          <div class="sw" style="background:#E5E2DC" data-hex="#E5E2DC"></div>
+          <div class="sw" style="background:#1B1B1B" data-hex="#1B1B1B"></div>
+          <div class="sw" style="background:#5A5A5A" data-hex="#5A5A5A"></div>
+          <div class="sw" style="background:#B07A4A" data-hex="#B07A4A"></div>
+        </div>
+      </div>
+      <div class="demo p5">
+        <div class="nav">
+          <span class="brand"><span class="dot">K</span> Kelly Technologies</span>
+          <span class="links"><span>Company</span><span>Team</span><span>Strategies</span></span>
+        </div>
+        <p class="eyebrow">Hong Kong SAR · Established 2025</p>
+        <h3>Systematic <em>volatility</em> strategies in S&amp;P 500 futures and index options.</h3>
+        <p class="sub">Position sizing rooted in the Kelly criterion — capital allocated to the informational content of each opportunity.</p>
+        <div class="row">
+          <a class="btn btn-primary">Our strategies</a>
+          <a class="btn btn-ghost">Research approach →</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><p class="l">Markets</p><p class="v">SPX · SPXW · ES</p></div>
+          <div class="stat"><p class="l">Mandate</p><p class="v">Vol &amp; Directional</p></div>
+          <div class="stat"><p class="l">HQ</p><p class="v">Hong Kong SAR</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6a -->
+    <section class="palette">
+      <div class="meta">
+        <p class="num">06a</p>
+        <h2>Aubergine &amp; Orchid</h2>
+        <p class="ref">Modern · sophisticated · slight night-sky</p>
+        <p class="why">Deep desaturated aubergine background — reads as a richer, more cinematic alternative to navy. Soft orchid accent is uncommon in finance, which makes the brand feel distinctive without sliding into "tech-bro purple."</p>
+        <div class="swatches">
+          <div class="sw" style="background:#1A1530" data-hex="#1A1530"></div>
+          <div class="sw" style="background:#241D40" data-hex="#241D40"></div>
+          <div class="sw" style="background:#EDE7F2" data-hex="#EDE7F2"></div>
+          <div class="sw" style="background:#B89BE0" data-hex="#B89BE0"></div>
+          <div class="sw" style="background:#7E5DB0" data-hex="#7E5DB0"></div>
+        </div>
+      </div>
+      <div class="demo p6a">
+        <div class="nav">
+          <span class="brand"><span class="dot">K</span> Kelly Technologies</span>
+          <span class="links"><span>Company</span><span>Team</span><span>Strategies</span></span>
+        </div>
+        <p class="eyebrow">Hong Kong SAR · Established 2025</p>
+        <h3>Systematic <em>volatility</em> strategies in S&amp;P 500 futures and index options.</h3>
+        <p class="sub">Position sizing rooted in the Kelly criterion — capital allocated to the informational content of each opportunity.</p>
+        <div class="row">
+          <a class="btn btn-primary">Our strategies</a>
+          <a class="btn btn-ghost">Research approach →</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><p class="l">Markets</p><p class="v">SPX · SPXW · ES</p></div>
+          <div class="stat"><p class="l">Mandate</p><p class="v">Vol &amp; Directional</p></div>
+          <div class="stat"><p class="l">HQ</p><p class="v">Hong Kong SAR</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6b -->
+    <section class="palette">
+      <div class="meta">
+        <p class="num">06b</p>
+        <h2>Bone &amp; Plum</h2>
+        <p class="ref">Editorial · light · understated luxury</p>
+        <p class="why">A light counterpart: a faintly mauve-tinted bone background paired with a deep plum accent. Reads as editorial / private-banking — refined, written-not-shouted, and clearly differentiated from Anthropic's terracotta cream.</p>
+        <div class="swatches">
+          <div class="sw" style="background:#F1ECEF" data-hex="#F1ECEF"></div>
+          <div class="sw" style="background:#E5DCE2" data-hex="#E5DCE2"></div>
+          <div class="sw" style="background:#1F1226" data-hex="#1F1226"></div>
+          <div class="sw" style="background:#5B2C6F" data-hex="#5B2C6F"></div>
+          <div class="sw" style="background:#3A1A47" data-hex="#3A1A47"></div>
+        </div>
+      </div>
+      <div class="demo p6b">
+        <div class="nav">
+          <span class="brand"><span class="dot">K</span> Kelly Technologies</span>
+          <span class="links"><span>Company</span><span>Team</span><span>Strategies</span></span>
+        </div>
+        <p class="eyebrow">Hong Kong SAR · Established 2025</p>
+        <h3>Systematic <em>volatility</em> strategies in S&amp;P 500 futures and index options.</h3>
+        <p class="sub">Position sizing rooted in the Kelly criterion — capital allocated to the informational content of each opportunity.</p>
+        <div class="row">
+          <a class="btn btn-primary">Our strategies</a>
+          <a class="btn btn-ghost">Research approach →</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><p class="l">Markets</p><p class="v">SPX · SPXW · ES</p></div>
+          <div class="stat"><p class="l">Mandate</p><p class="v">Vol &amp; Directional</p></div>
+          <div class="stat"><p class="l">HQ</p><p class="v">Hong Kong SAR</p></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      Tell me a number (or mix — e.g. "01 background with 04 accent") and I'll apply it to <code>assets/styles.css</code> on the main site by updating the <code>:root</code> tokens.
+    </p>
+  </div>
+</body>
+</html>
