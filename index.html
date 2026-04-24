@@ -9,7 +9,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/hero-bg.jpg" fetchpriority="high" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..700&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
@@ -20,9 +21,9 @@
         <img src="assets/logo.svg" alt="Kelly Technologies" class="brand-logo" />
       </a>
       <nav class="lang-toggle" aria-label="Language">
-        <button type="button" data-lang="en" aria-label="English">EN</button>
-        <span class="lang-sep" aria-hidden="true">·</span>
         <button type="button" data-lang="zh" aria-label="中文">中文</button>
+        <span class="lang-sep" aria-hidden="true">·</span>
+        <button type="button" data-lang="en" aria-label="English">EN</button>
       </nav>
     </div>
   </header>
@@ -32,12 +33,11 @@
       <div class="hero-grain" aria-hidden="true"></div>
       <div class="container">
         <h1 class="hero-title"
-            data-en="At Kelly Technologies<br />we start from market hypotheses<br />and employ mathematical and statistical theories<br />to build and execute investment programs"
-            data-zh="在 Kelly Technologies<br />我们从基于市场现象的假设出发<br />依托数学与统计理论构建并执行投资程序">
-          At Kelly Technologies<br />
+            data-en="At <mark>Kelly Technologies</mark><br />we start from market hypotheses<br />and employ mathematical and statistical models to build and execute investment programs"
+            data-zh="在 <mark>Kelly Technologies</mark><br />我们从基于市场现象的假设出发<br />依托数学与统计模型构建并执行投资程序">
+          At <mark>Kelly Technologies</mark><br />
           we start from market hypotheses<br />
-          and employ mathematical and statistical theories<br />
-          to build and execute investment programs
+          and employ mathematical and statistical models to build and execute investment programs
         </h1>
       </div>
     </section>
