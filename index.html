@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kelly Technologies</title>
-  <meta name="description" content="Kelly Technologies Limited — an investment and technology firm." />
+  <meta name="description" content="Kelly Technologies — an investment and technology firm." />
   <meta name="theme-color" content="#fcfcfc" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,71 +16,93 @@
 <body>
   <header class="site-header" id="top">
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="Kelly Technologies home">
+      <a class="brand" href="#top" aria-label="Kelly Technologies">
         <img src="assets/logo.svg" alt="Kelly Technologies" class="brand-logo" />
       </a>
+      <nav class="lang-toggle" aria-label="Language">
+        <button type="button" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep" aria-hidden="true">·</span>
+        <button type="button" data-lang="zh" aria-label="中文">中文</button>
+      </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
+      <div class="hero-grain" aria-hidden="true"></div>
       <div class="container">
-        <h1 class="hero-title">
-          We are Kelly Technologies Limited,<br />
-          an investment and technology firm with academic culture and start-up excitement.
+        <h1 class="hero-title"
+            data-en="At Kelly Technologies<br />we start from market hypotheses<br />and employ mathematical and statistical theories<br />to build and execute investment programs"
+            data-zh="在 Kelly Technologies<br />我们从基于市场现象的假设出发<br />依托数学与统计理论构建并执行投资程序">
+          At Kelly Technologies<br />
+          we start from market hypotheses<br />
+          and employ mathematical and statistical theories<br />
+          to build and execute investment programs
         </h1>
-        <p class="hero-title">
-          We employ mathematical and statistical theories in the design and
-          execution of our investment algorithms.
-        </p>
       </div>
     </section>
 
     <section id="strategies" class="section">
-      <div class="container">
-        <p class="section-eyebrow">Our Strategies</p>
-        <h2 class="section-title">
-          We specialize in systematic volatility trading in the US equity
-          index derivatives market.
-        </h2>
+      <div class="container strategies-grid">
+        <div class="strategies-text">
+          <p class="section-eyebrow" data-en="Our Strategies" data-zh="投资策略">Our Strategies</p>
+          <h2 class="section-title"
+              data-en="We specialize in systematic volatility trading in the US equity index derivatives market"
+              data-zh="我们专注于在美国股指衍生品市场中执行系统化的波动率交易">
+            We specialize in systematic volatility trading in the US equity
+            index derivatives market
+          </h2>
+        </div>
+        <div class="strategies-viz">
+          <svg class="vol-surface" viewBox="0 0 500 340" role="img" aria-label="Implied volatility surface"></svg>
+        </div>
       </div>
     </section>
 
     <section id="team" class="section">
       <div class="container">
-        <p class="section-eyebrow">Our Team</p>
+        <p class="section-eyebrow" data-en="Our Team" data-zh="团队成员">Our Team</p>
 
         <div class="team-grid">
           <article class="team-card">
             <div class="team-portrait" aria-hidden="true"><span>TS</span></div>
-            <h3>Tianxin Song</h3>
-            <p class="role">Chief Executive Officer</p>
+            <h3 data-en="Tianxin Song" data-zh="宋天心">Tianxin Song</h3>
+            <p class="role" data-en="Chief Executive Officer" data-zh="首席执行官">Chief Executive Officer</p>
             <ul class="bio">
-              <li>Senior Associate, Investment Banking, China Securities Co., Ltd.</li>
-              <li>MSc in Management, London Business School</li>
-              <li>MA (Hons) Economics, University of St Andrews</li>
+              <li data-en="Senior Associate, Investment Banking, China Securities Co., Ltd."
+                  data-zh="前中信建投证券 投资银行部 高级经理">Senior Associate, Investment Banking, China Securities Co., Ltd.</li>
+              <li data-en="MSc in Management, London Business School"
+                  data-zh="伦敦商学院 管理学硕士">MSc in Management, London Business School</li>
+              <li data-en="MA (Hons) Economics, University of St Andrews"
+                  data-zh="圣安德鲁斯大学 经济学荣誉硕士">MA (Hons) Economics, University of St Andrews</li>
             </ul>
           </article>
 
           <article class="team-card">
             <div class="team-portrait" aria-hidden="true"><span>XX</span></div>
-            <h3>Xinhai Xiong</h3>
-            <p class="role">Chief Technology Officer</p>
+            <h3 data-en="Xinhai Xiong" data-zh="熊昕海">Xinhai Xiong</h3>
+            <p class="role" data-en="Chief Technology Officer" data-zh="首席技术官">Chief Technology Officer</p>
             <ul class="bio">
-              <li>Software Engineer, Google LLC</li>
-              <li>MS Software Engineering, Carnegie Mellon University</li>
-              <li>BS Computer Science, University of California, Santa Cruz</li>
+              <li data-en="Software Engineer, Google LLC"
+                  data-zh="前 Google 软件工程师">Software Engineer, Google LLC</li>
+              <li data-en="MS Software Engineering, Carnegie Mellon University"
+                  data-zh="卡内基梅隆大学 软件工程硕士">MS Software Engineering, Carnegie Mellon University</li>
+              <li data-en="BS Computer Science, University of California, Santa Cruz"
+                  data-zh="加州大学圣克鲁兹分校 计算机科学学士">BS Computer Science, University of California, Santa Cruz</li>
             </ul>
           </article>
 
           <article class="team-card">
             <div class="team-portrait" aria-hidden="true"><span>PX</span></div>
-            <h3>Peiyu Xiong</h3>
-            <p class="role">Chief Research Officer</p>
+            <h3 data-en="Peiyu Xiong" data-zh="熊珮羽">Peiyu Xiong</h3>
+            <p class="role" data-en="Chief Research Officer" data-zh="首席研究官">Chief Research Officer</p>
             <ul class="bio">
-              <li>Quantitative Researcher, Shanghai Quantinv Asset Management Co., Ltd.</li>
-              <li>MSc Mathematics and Finance, Imperial College London</li>
-              <li>BSc Mathematics, Imperial College London</li>
+              <li data-en="Quantitative Researcher, Shanghai Quantinv Asset Management Co., Ltd."
+                  data-zh="前上海宽投资产管理 量化研究员">Quantitative Researcher, Shanghai Quantinv Asset Management Co., Ltd.</li>
+              <li data-en="MSc Mathematics and Finance, Imperial College London"
+                  data-zh="帝国理工学院 数学与金融硕士">MSc Mathematics and Finance, Imperial College London</li>
+              <li data-en="BSc Mathematics, Imperial College London"
+                  data-zh="帝国理工学院 数学学士">BSc Mathematics, Imperial College London</li>
             </ul>
           </article>
         </div>
@@ -89,8 +111,10 @@
 
     <section id="contact" class="section">
       <div class="container">
-        <p class="section-eyebrow">Contact</p>
-        <p class="contact-address">
+        <p class="section-eyebrow" data-en="Contact" data-zh="联系我们">Contact</p>
+        <p class="contact-address"
+           data-en="Unit 1003, 10/F., Tower 2, Silvercord,<br />30 Canton Road, Tsim Sha Tsui,<br />Kowloon, Hong Kong"
+           data-zh="香港九龙尖沙咀<br />广东道 30 号新港中心第二座<br />10 楼 1003 室">
           Unit 1003, 10/F., Tower 2, Silvercord,<br />
           30 Canton Road, Tsim Sha Tsui,<br />
           Kowloon, Hong Kong
@@ -102,8 +126,10 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-disclaimer">
-        © <span id="year">2026</span> Kelly Technologies Limited. All rights reserved.
+      <p class="footer-disclaimer"
+         data-en='© <span id="year">2026</span> Kelly Technologies. All rights reserved.'
+         data-zh='© <span id="year">2026</span> Kelly Technologies 版权所有'>
+        © <span id="year">2026</span> Kelly Technologies. All rights reserved.
       </p>
     </div>
   </footer>
