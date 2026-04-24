@@ -2,16 +2,13 @@
 
 Static one-pager for **Kelly Technologies Limited** (kellytec.io).
 
-**Design language.** Dark aubergine base (`#1A1530`) with a soft orchid
-accent (`#B89BE0`), punctuated by warm bone-white sections (`#F1ECEF`)
-with a deep plum accent (`#5B2C6F`). Display type is Fraunces (serif),
-body is Inter, monospace tags use JetBrains Mono — generous whitespace
-and serif italics carry an editorial / institutional feel without being
-visually loud.
-
-The two light sections (Team, Contact) intentionally break the long dark
-spine so the eye gets rhythm and the founders read as warm and
-approachable.
+**Design language (Brandmark palette).** Near-white canvas (`#FCFCFC`)
+over a deep cool charcoal ink (`#373545`), with a three-step muted
+lavender-gray accent ladder — **Accent 1** `#7F7B9A`, **Accent 2**
+`#67647E`, **Accent 3** `#4F4C61`. Display type is Fraunces (serif),
+body is Inter, monospace eyebrows use JetBrains Mono. Generous
+whitespace and serif italics carry an editorial / institutional feel
+without being visually loud.
 
 A live palette study lives at `palettes.html` if we ever want to retheme.
 
@@ -35,8 +32,10 @@ python3 -m http.server 8000
 kellytec-website/
 ├── index.html          # single-page site
 ├── assets/
-│   ├── styles.css      # design system + components
-│   └── script.js       # nav scroll state + reveal animations
+│   ├── styles.css      # design tokens + components
+│   ├── script.js       # header scroll state + reveal animations
+│   ├── logo.svg        # wordmark + icon (dark on light)
+│   └── logo-light.svg  # light variant for dark backgrounds
 ├── CNAME               # custom domain → kellytec.io
 ├── .nojekyll           # disable Jekyll on Pages (we ship raw files)
 └── README.md
@@ -84,14 +83,12 @@ The `CNAME` file already contains `kellytec.io`. To point the domain:
 
 All copy lives in `index.html` in semantic sections:
 
-| Section ID    | Purpose                                  |
-| ------------- | ---------------------------------------- |
-| `#company`    | Overview, edge, technology, discipline   |
-| `#team`       | Founder bios (TS / XX / PX)              |
-| `#research`   | Research pipeline (4 stages)             |
-| `#execution`  | Execution stack (algo / clearing / data) |
-| `#strategies` | ALGO3 + ALGO5 summary cards              |
-| `#contact`    | Email & address                          |
+| Section ID    | Purpose                              |
+| ------------- | ------------------------------------ |
+| `hero`        | Firm intro (no id)                   |
+| `#strategies` | One-line strategy statement          |
+| `#team`       | Founder cards (TS / XX / PX)         |
+| `#contact`    | Office address + email               |
 
 Design tokens (colors, fonts, spacing) are defined as CSS variables
 at the top of `assets/styles.css` under `:root` — change them in one

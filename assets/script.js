@@ -1,7 +1,7 @@
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Sticky header shadow on scroll
+// Sticky header border on scroll
 const header = document.querySelector('.site-header');
 const onScroll = () => {
   if (window.scrollY > 8) header.classList.add('scrolled');
@@ -12,7 +12,7 @@ onScroll();
 
 // Reveal-on-scroll
 const revealTargets = document.querySelectorAll(
-  '.hero-title, .hero-sub, .hero-actions, .hero-meta, .section-header, .col-label, .col-body, .card, .team-card, .pipeline > li, .exec-card, .strat-card, .contact-card'
+  '.hero-title, .section-eyebrow, .section-title, .team-card, .contact-address, .contact-mail'
 );
 revealTargets.forEach(el => el.classList.add('reveal'));
 
