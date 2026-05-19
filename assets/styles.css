@@ -80,8 +80,18 @@ img, svg { display: block; max-width: 100%; }
 }
 .brand { display: inline-flex; align-items: center; color: var(--ink); }
 .brand-logo { display: block; height: 30px; width: auto; }
-.lp-login {
+.gp-login {
   margin-left: auto;
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  transition: color .18s var(--ease);
+}
+.lp-login {
+  margin-left: 1rem;
   color: var(--ink-muted);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -97,9 +107,11 @@ img, svg { display: block; max-width: 100%; }
   border-color: var(--accent);
   background: rgba(127,123,154,.08);
 }
+.gp-login:hover { color: var(--accent-deep); }
 
 /* Language toggle */
 .lang-toggle {
+  margin-left: 1rem;
   display: inline-flex;
   align-items: baseline;
   gap: .5rem;
@@ -261,6 +273,16 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 860px) {
   .strategies-grid { grid-template-columns: 1fr; }
   .vol-surface { max-width: 460px; }
+}
+
+@media (max-width: 560px) {
+  .nav { gap: .75rem; }
+  .gp-login {
+    margin-left: auto;
+    font-size: .72rem;
+    letter-spacing: 0;
+  }
+  .lang-toggle { margin-left: 0; }
 }
 
 /* Team */
