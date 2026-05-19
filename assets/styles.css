@@ -80,13 +80,30 @@ img, svg { display: block; max-width: 100%; }
 }
 .brand { display: inline-flex; align-items: center; color: var(--ink); }
 .brand-logo { display: block; height: 30px; width: auto; }
+.lp-login {
+  margin-left: auto;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .32rem .75rem;
+  font-family: var(--font-sans);
+  font-size: .78rem;
+  line-height: 1.2;
+  letter-spacing: .05em;
+  transition: color .18s var(--ease), border-color .18s var(--ease), background-color .18s var(--ease);
+}
+.lp-login:hover {
+  color: var(--accent-deep);
+  border-color: var(--accent);
+  background: rgba(127,123,154,.08);
+}
 
 /* Language toggle */
 .lang-toggle {
-  margin-left: auto;
   display: inline-flex;
   align-items: baseline;
   gap: .5rem;
+  margin-left: 1rem;
   font-family: var(--font-sans);
   font-size: .82rem;
   letter-spacing: .05em;
@@ -107,6 +124,14 @@ img, svg { display: block; max-width: 100%; }
   font-weight: 700;
 }
 .lang-sep { color: var(--line-strong); }
+
+@media (max-width: 560px) {
+  .lp-login {
+    padding: .28rem .55rem;
+    font-size: .72rem;
+  }
+  .lang-toggle { margin-left: .7rem; }
+}
 
 /* Hero */
 .hero {
