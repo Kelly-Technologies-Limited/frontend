@@ -11,27 +11,33 @@
       width: 100%;
       height: 100%;
       margin: 0;
-      background: #373545;
-      overflow: hidden;
+      background: #fcfcfc;
+      color: #373545;
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: #373545;
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    a {
+      color: inherit;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://monitor-lxnhpxvrea-ue.a.run.app/gp/monitor"
-    title="Kelly Technologies Observability Monitor"
-    referrerpolicy="no-referrer"
-  ></iframe>
+  <main>
+    <p>Opening Kelly Technologies on-call monitor...</p>
+    <p><a id="monitor-link" href="https://monitor-lxnhpxvrea-ue.a.run.app/gp/monitor/login">Continue to monitor</a></p>
+  </main>
+  <script>
+    window.location.replace("https://monitor-lxnhpxvrea-ue.a.run.app/gp/monitor/login");
+  </script>
   <noscript>
-    <a href="https://monitor-lxnhpxvrea-ue.a.run.app/gp/monitor">Open Observability Monitor</a>
+    <a href="https://monitor-lxnhpxvrea-ue.a.run.app/gp/monitor/login">Open Observability Monitor</a>
   </noscript>
 </body>
 </html>
