@@ -400,10 +400,10 @@ img, svg { display: block; max-width: 100%; }
 /* Footer */
 .site-footer {
   flex-shrink: 0;
-  background: var(--ink);
-  color: rgba(252,252,252,.62);
+  background: var(--bg);
+  color: var(--ink-muted);
   padding: 2.25rem 0;
-  border-top: 1px solid rgba(252,252,252,.06);
+  border-top: 1px solid var(--line);
 }
 .footer-disclaimer {
   font-size: .82rem;
