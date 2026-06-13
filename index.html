@@ -31,19 +31,17 @@
          aria-disabled="true"
          data-en="LP"
          data-zh="投资人">投资人</a>
-      <nav class="lang-toggle" aria-label="Language">
-        <button type="button" data-lang="zh" aria-label="中文">CN</button>
-        <span class="lang-sep" aria-hidden="true">·</span>
-        <button type="button" data-lang="en" aria-label="English">EN</button>
-      </nav>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch to English">EN</button>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
+  <main data-page="home">
+    <section class="hero" data-tab="hero">
       <div class="hero-grain" aria-hidden="true"></div>
       <div class="container">
         <h1 class="hero-title"
+            data-card="hero_title"
+            data-cell="headline"
             data-en="At <mark>Kelly Technologies</mark><br />we start from market&nbsp;hypotheses<br />and employ mathematical and statistical models to build and execute investment&nbsp;programs"
             data-zh="在 <mark>Kelly Technologies</mark><br />我们从基于<br class='mobile-br' /><span class='nb'>市场现象的假设出发</span><br /><span class='nb'>依托数学与统计模型</span><br class='mobile-br' /><span class='nb'>构建并执行投资程序</span>">
           At <mark>Kelly Technologies</mark><br />
@@ -53,60 +51,64 @@
       </div>
     </section>
 
-    <section id="strategies" class="section">
+    <section id="strategies" class="section" data-tab="strategies">
       <div class="container strategies-grid">
-        <div class="strategies-text">
-          <p class="section-eyebrow" data-en="Our Strategies" data-zh="投资策略">Our Strategies</p>
+        <div class="strategies-text" data-card="strategy_statement">
+          <p class="section-eyebrow" data-cell="eyebrow" data-en="Our Strategies" data-zh="投资策略">Our Strategies</p>
           <h2 class="section-title"
+              data-cell="title"
               data-en="We specialize in systematic volatility trading in the US equity index derivatives&nbsp;market"
               data-zh="我们专注于在美国<span class='nb'>股指衍生品市场</span>中<span class='nb'>执行系统化的波动率交易</span>">
             We specialize in systematic volatility trading in the US equity
             index derivatives&nbsp;market
           </h2>
         </div>
-        <div class="strategies-viz">
-          <svg class="vol-surface" viewBox="0 0 500 340" role="img" aria-label="Implied volatility surface"></svg>
+        <div class="strategies-viz" data-card="volatility_surface">
+          <svg class="vol-surface" data-cell="surface" viewBox="0 0 500 340" role="img" aria-label="Implied volatility surface"></svg>
         </div>
       </div>
     </section>
 
-    <section id="team" class="section">
+    <section id="team" class="section" data-tab="team">
       <div class="container">
-        <p class="section-eyebrow" data-en="Our Team" data-zh="团队成员">Our Team</p>
+        <p class="section-eyebrow" data-card="team_heading" data-cell="eyebrow" data-en="Our Team" data-zh="团队成员">Our Team</p>
 
         <div class="team-grid">
-          <article class="team-card">
-            <div class="team-portrait" aria-hidden="true"><span>TS</span></div>
-            <h3 data-en="Tianxin Song" data-zh="宋天心">Tianxin Song</h3>
-            <p class="role" data-en="Chief Executive Officer" data-zh="首席执行官">Chief Executive Officer</p>
+          <article class="team-card" data-card="team_member_tianxin_song">
+            <div class="team-portrait" data-cell="initials" aria-hidden="true"><span>TS</span></div>
+            <h3 data-cell="name" data-en="Tianxin Song" data-zh="宋天心">Tianxin Song</h3>
+            <p class="role" data-cell="role" data-en="Chief Executive Officer" data-zh="首席执行官">Chief Executive Officer</p>
             <p class="bio"
-               data-en="Ex Investment Banking Senior Associate at China Securities Co.<br />MSc Management at London Business School"
-               data-zh="曾就职于中信建投证券投行部<br />伦敦商学院管理系">
-              Ex Investment Banking Senior Associate at China Securities Co.<br />
+               data-cell="bio"
+               data-en="Former Investment Banking Senior Associate at China Securities Co.<br />MSc Management at London Business School"
+               data-zh="曾就职于中信建投证券任投行部高级经理<br />伦敦商学院管理系">
+              Former Investment Banking Senior Associate at China Securities Co.<br />
               MSc Management at London Business School
             </p>
           </article>
 
-          <article class="team-card">
-            <div class="team-portrait" aria-hidden="true"><span>XX</span></div>
-            <h3 data-en="Xinhai Xiong" data-zh="熊昕海">Xinhai Xiong</h3>
-            <p class="role" data-en="Chief Technology Officer" data-zh="首席技术官">Chief Technology Officer</p>
+          <article class="team-card" data-card="team_member_xinhai_xiong">
+            <div class="team-portrait" data-cell="initials" aria-hidden="true"><span>XX</span></div>
+            <h3 data-cell="name" data-en="Xinhai Xiong" data-zh="熊昕海">Xinhai Xiong</h3>
+            <p class="role" data-cell="role" data-en="Chief Technology Officer" data-zh="首席技术官">Chief Technology Officer</p>
             <p class="bio"
-               data-en="Ex Software Engineer at Google LLC<br />MS Software Engineering at Carnegie Mellon University"
-               data-zh="前 Google 软件工程师<br />卡内基梅隆大学软件工程系">
-              Ex Software Engineer at Google LLC<br />
+               data-cell="bio"
+               data-en="Former Software Engineer at Google LLC<br />MS Software Engineering at Carnegie Mellon University"
+               data-zh="曾就职于 Google 任软件工程师<br />卡内基梅隆大学软件工程系">
+              Former Software Engineer at Google LLC<br />
               MS Software Engineering at Carnegie Mellon University
             </p>
           </article>
 
-          <article class="team-card">
-            <div class="team-portrait" aria-hidden="true"><span>PX</span></div>
-            <h3 data-en="Peiyu Xiong" data-zh="熊珮羽">Peiyu Xiong</h3>
-            <p class="role" data-en="Chief Research Officer" data-zh="首席研究官">Chief Research Officer</p>
+          <article class="team-card" data-card="team_member_peiyu_xiong">
+            <div class="team-portrait" data-cell="initials" aria-hidden="true"><span>PX</span></div>
+            <h3 data-cell="name" data-en="Peiyu Xiong" data-zh="熊珮羽">Peiyu Xiong</h3>
+            <p class="role" data-cell="role" data-en="Chief Research Officer" data-zh="首席研究官">Chief Research Officer</p>
             <p class="bio"
-               data-en="Former Quantitative Researcher at a 10B+ AUM Quant Fund<br />MSc Mathematics and Finance at Imperial College London"
-               data-zh="曾就职于某百亿量化私募<br />帝国理工大学数学系">
-              Former Quantitative Researcher at a 10B+ AUM Quant Fund<br />
+               data-cell="bio"
+               data-en="Former Quantitative Researcher at a China-based quantitative private fund with ￥10B+ AUM<br />MSc Mathematics and Finance at Imperial College London"
+               data-zh="曾就职于某百亿量化私募基金任量化研究员<br />帝国理工大学数学系">
+              Former Quantitative Researcher at a China-based quantitative private fund with ￥10B+ AUM<br />
               MSc Mathematics and Finance at Imperial College London
             </p>
           </article>
@@ -114,17 +116,19 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section" data-tab="contact">
       <div class="container">
-        <p class="section-eyebrow" data-en="Contact" data-zh="联系我们">Contact</p>
+        <p class="section-eyebrow" data-card="office_contact" data-cell="eyebrow" data-en="Contact" data-zh="联系我们">Contact</p>
         <p class="contact-address"
+           data-card="office_contact"
+           data-cell="address"
            data-en="Unit 1003, 10/F., Tower 2, Silvercord,<br />30 Canton Road, Tsim Sha Tsui,<br />Kowloon, Hong Kong"
            data-zh="香港九龙尖沙咀<br />广东道 30 号新港中心第二座<br />10 楼 1003 室">
           Unit 1003, 10/F., Tower 2, Silvercord,<br />
           30 Canton Road, Tsim Sha Tsui,<br />
           Kowloon, Hong Kong
         </p>
-        <a href="mailto:info@kellytec.io" class="contact-mail">info@kellytec.io</a>
+        <a href="mailto:info@kellytec.io" class="contact-mail" data-card="office_contact" data-cell="email">info@kellytec.io</a>
       </div>
     </section>
   </main>
@@ -139,6 +143,10 @@
     </div>
   </footer>
 
-  <script src="assets/script.js" defer></script>
+  <script src="assets/scripts/page_reveal.js" defer></script>
+  <script src="assets/scripts/language.js" defer></script>
+  <script src="assets/scripts/header_scroll.js" defer></script>
+  <script src="assets/scripts/cards/card_volatility_surface.js" defer></script>
+  <script src="assets/scripts/reveal_on_scroll.js" defer></script>
 </body>
 </html>

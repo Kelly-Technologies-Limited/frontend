@@ -1,57 +1,3 @@
-// Reveal page only after fonts + hero background are ready.
-// Falls back to a 2.5s timeout so a stalled asset never traps the page.
-(function gateReveal() {
-  const reveal = () => document.body.classList.add('loaded');
-  const ready = [];
-  if (document.fonts && document.fonts.ready) ready.push(document.fonts.ready);
-  ready.push(new Promise(resolve => {
-    const img = new Image();
-    img.onload = img.onerror = () => resolve();
-    img.src = 'assets/hero-bg.jpg';
-  }));
-  Promise.all(ready).then(reveal);
-  setTimeout(reveal, 2500);
-})();
-
-// Footer year (re-run after lang switch since innerHTML replaces the span)
-function setYear() {
-  const el = document.getElementById('year');
-  if (el) el.textContent = new Date().getFullYear();
-}
-
-// Language toggle
-function applyLang(lang) {
-  document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
-  document.querySelectorAll('[data-en][data-zh]').forEach(el => {
-    const val = el.dataset[lang];
-    if (val != null) el.innerHTML = val;
-  });
-  setYear();
-  document.querySelectorAll('.lang-toggle button[data-lang]').forEach(btn => {
-    btn.classList.toggle('is-active', btn.dataset.lang === lang);
-  });
-  try { localStorage.setItem('kellytec-lang', lang); } catch (e) {}
-}
-
-const savedLang = (() => {
-  try { return localStorage.getItem('kellytec-lang'); } catch (e) { return null; }
-})();
-const initialLang = savedLang || 'zh';
-applyLang(initialLang);
-
-document.querySelectorAll('.lang-toggle button[data-lang]').forEach(btn => {
-  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-});
-
-// Sticky header border on scroll
-const header = document.querySelector('.site-header');
-const onScroll = () => {
-  if (window.scrollY > 8) header.classList.add('scrolled');
-  else header.classList.remove('scrolled');
-};
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-
 // Volatility surface (right side of Strategies)
 (function renderVolSurface() {
   const svg = document.querySelector('.vol-surface');
@@ -88,7 +34,7 @@ onScroll();
     return [ox + i * sx + j * cosA * sy, oy - j * sinA * sy];
   }
 
-  // Catmull-Rom → cubic bezier
+  // Catmull-Rom -> cubic bezier
   function smoothPath(pts) {
     if (pts.length < 2) return '';
     let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
@@ -124,7 +70,7 @@ onScroll();
     return d + 'Z';
   }
 
-  // Bottom floor plane (filled parallelogram at h=0) — drawn first, sits under everything
+  // Bottom floor plane (filled parallelogram at h=0) - drawn first, sits under everything
   const floor4 = [
     projectFloor(0, 0),
     projectFloor(nK - 1, 0),
@@ -139,12 +85,12 @@ onScroll();
        `L${floor4[3][0].toFixed(1)} ${floor4[3][1].toFixed(1)}Z`,
   });
 
-  // Left side wall (K=-1 plane) — connects the surface's left edge to the floor
+  // Left side wall (K=-1 plane) - connects the surface's left edge to the floor
   const leftTop = [], leftBot = [];
   for (let j = 0; j < nT; j++) { leftTop.push(project(0, j)); leftBot.push(projectFloor(0, j)); }
   addPath({ class: 'wall wall-left', d: wallPath(leftTop, leftBot) });
 
-  // Smile curves (constant T), drawn back→front so the front sits on top
+  // Smile curves (constant T), drawn back-to-front so the front sits on top
   for (let j = nT - 1; j >= 0; j--) {
     const pts = [];
     for (let i = 0; i < nK; i++) pts.push(project(i, j));
@@ -173,20 +119,3 @@ onScroll();
     });
   }
 })();
-
-// Reveal-on-scroll
-const revealTargets = document.querySelectorAll(
-  '.hero-title, .section-eyebrow, .section-title, .team-card, .contact-address, .contact-mail, .strategies-viz'
-);
-revealTargets.forEach(el => el.classList.add('reveal'));
-
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      io.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-revealTargets.forEach(el => io.observe(el));
