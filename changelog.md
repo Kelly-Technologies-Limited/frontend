@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-02
+
+- Reframed both GP system cards as two-line product hierarchies: English uses
+  `ALGO3 Monitor / Operations` and `ALGO3 Monitor / Data Availability`, while
+  Chinese uses `ALGO3 监控台 / 运营` and `ALGO3 监控台 / 数据可用性`.
+
 ## 2026-09-01
 
 - Standardized the GP landing browser-tab title in English regardless of the
