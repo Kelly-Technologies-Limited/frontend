@@ -15,8 +15,6 @@ function updateLanguageToggle(lang) {
 
 function applyLang(lang) {
   document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
-  const localizedTitle = document.body.dataset[lang === 'zh' ? 'titleZh' : 'titleEn'];
-  if (localizedTitle) document.title = localizedTitle;
   document.querySelectorAll('[data-en][data-zh]').forEach(el => {
     const val = el.dataset[lang];
     if (val != null) el.innerHTML = val;

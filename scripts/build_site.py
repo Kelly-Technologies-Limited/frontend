@@ -138,7 +138,7 @@ def render_gp_page() -> str:
     }
     page_values = {
         "chrome.document_head": render_document_head(
-            title="管理人登入 | Kelly Technologies",
+            title="GP Login | Kelly Technologies",
             description="Authorized access to Kelly Technologies monitoring systems.",
             asset_prefix="../",
             noindex=True,

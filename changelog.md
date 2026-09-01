@@ -2,6 +2,9 @@
 
 ## 2026-09-01
 
+- Standardized the GP landing browser-tab title in English regardless of the
+  selected page language.
+- Aligned both monitor-card titles with the GP Login serif weight and tracking.
 - Corrected the public access navigation so the language switch renders
   `GP / LP` in English and `管理人 / 投资人` in Chinese.
 - Compacted the GP landing page to fit standard desktop viewports without
