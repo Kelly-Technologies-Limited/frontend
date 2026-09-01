@@ -2,6 +2,10 @@
 
 ## 2026-09-02
 
+- Replaced both GP card Unicode arrow characters with deterministic inline SVG
+  paths so mobile platforms cannot substitute emoji glyphs. Centered the
+  security-note mark on the first mobile text line; the 430px Chrome regression
+  measures a 0.04px center delta with zero horizontal overflow.
 - Reframed both GP system cards as two-line product hierarchies: English uses
   `ALGO3 Monitor / Operations` and `ALGO3 Monitor / Data Availability`, while
   Chinese uses `ALGO3 监控台 / 运营` and `ALGO3 监控台 / 数据可用性`.
