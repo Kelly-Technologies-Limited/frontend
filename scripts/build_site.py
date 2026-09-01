@@ -15,6 +15,7 @@ TABS = HOME / "tabs"
 GP = SRC / "pages" / "gp"
 GP_CARDS = GP / "cards"
 GP_TABS = GP / "tabs"
+REDIRECTS = SRC / "redirects"
 
 CSS_SOURCES = (
     SRC / "styles" / "tokens.css",
@@ -137,7 +138,7 @@ def render_gp_page() -> str:
     }
     page_values = {
         "chrome.document_head": render_document_head(
-            title="GP Login | Kelly Technologies",
+            title="管理人登入 | Kelly Technologies",
             description="Authorized access to Kelly Technologies monitoring systems.",
             asset_prefix="../",
             noindex=True,
@@ -159,6 +160,10 @@ def main() -> None:
     (ROOT / "index.html").write_text(render_home_page(), encoding="utf-8")
     (ROOT / "gp").mkdir(exist_ok=True)
     (ROOT / "gp" / "index.html").write_text(render_gp_page(), encoding="utf-8")
+    (ROOT / "gp" / "monitor").mkdir(parents=True, exist_ok=True)
+    (ROOT / "gp" / "monitor" / "index.html").write_text(
+        read(REDIRECTS / "gp_monitor.html"), encoding="utf-8"
+    )
     (ROOT / "assets" / "styles.css").write_text(build_css(), encoding="utf-8")
 
 

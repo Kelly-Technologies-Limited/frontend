@@ -86,7 +86,13 @@ The build writes:
 
 - `index.html`
 - `gp/index.html`
+- `gp/monitor/index.html`
 - `assets/styles.css`
+
+The root `index.html`, `gp/`, and `assets/styles.css` paths are tracked build
+artifacts because branch-based GitHub Pages serves the repository root. Their
+editable page and redirect sources remain under `src/`; do not edit the
+generated copies directly.
 
 The old monolithic `assets/script.js` entrypoint is intentionally gone. Runtime
 behavior is split under `assets/scripts/`.
@@ -103,6 +109,7 @@ src/pages/home/page.html    # home page shell and tab order
 src/pages/home/tabs/        # current tab_*.html sections
 src/pages/home/cards/       # current card_*.html files with data-cell annotations
 src/pages/gp/               # GP Login page, tab, and card source
+src/redirects/              # legacy redirect source
 src/styles/                 # split CSS source
 assets/styles.css           # generated stylesheet, Monitor chrome source
 assets/scripts/             # split runtime behavior Modules
@@ -110,7 +117,7 @@ assets/logo.svg             # wordmark + icon
 assets/logo-light.svg       # light logo variant
 assets/favicon.svg
 assets/hero-bg.jpg
-gp/monitor/index.html       # legacy redirect to GP Login
+gp/monitor/index.html       # generated legacy redirect to GP Login
 CNAME
 .nojekyll
 ```

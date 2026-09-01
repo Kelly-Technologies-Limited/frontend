@@ -233,7 +233,7 @@ img, svg { display: block; max-width: 100%; }
     margin-left: auto;
   }
   .lp-login {
-    display: none;
+    margin-left: 0;
   }
   .lang-toggle {
     margin-left: 0;
@@ -246,17 +246,6 @@ img, svg { display: block; max-width: 100%; }
   .mobile-br { display: block; }
   .site-footer {
     padding: 1.75rem 0 calc(1.75rem + env(safe-area-inset-bottom));
-  }
-}
-
-@media (max-width: 400px) {
-  .brand {
-    width: 30px;
-    overflow: hidden;
-  }
-  .brand-logo {
-    width: auto;
-    max-width: none;
   }
 }
 
@@ -487,7 +476,7 @@ img, svg { display: block; max-width: 100%; }
   flex: 1 0 auto;
   display: flex;
   align-items: center;
-  padding: clamp(4rem, 8vw, 7.5rem) 0;
+  padding: clamp(2rem, 3.5vw, 3rem) 0;
   background:
     radial-gradient(circle at 82% 18%, rgba(127,123,154,.1), transparent 32rem),
     var(--bg);
@@ -500,49 +489,45 @@ img, svg { display: block; max-width: 100%; }
 
 .gp-intro {
   max-width: 46rem;
-  margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+  margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
 .gp-intro .section-eyebrow {
-  margin-bottom: 1.1rem;
+  margin-bottom: .7rem;
 }
 
 .gp-title {
-  max-width: 14ch;
+  max-width: 18ch;
   margin: 0;
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
   font-weight: 400;
   letter-spacing: -.045em;
-  line-height: .98;
+  line-height: 1.02;
   text-wrap: balance;
-}
-
-.gp-title-zh {
-  white-space: nowrap;
 }
 
 .gp-lede {
   max-width: 38rem;
-  margin: 1.5rem 0 0;
+  margin: .8rem 0 0;
   color: var(--ink-soft);
-  font-size: clamp(.98rem, 1.5vw, 1.08rem);
-  line-height: 1.7;
+  font-size: clamp(.9rem, 1.2vw, 1rem);
+  line-height: 1.55;
   text-wrap: pretty;
 }
 
 .gp-system-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: .85rem;
 }
 
 .gp-system-card {
-  min-height: 20rem;
+  min-height: 13rem;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.25rem, 2.2vw, 1.6rem);
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 3px;
@@ -572,7 +557,7 @@ img, svg { display: block; max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.35rem;
 }
 
 .gp-system-index {
@@ -586,7 +571,7 @@ img, svg { display: block; max-width: 100%; }
 .gp-access-badge {
   display: inline-flex;
   align-items: center;
-  min-height: 1.75rem;
+  min-height: 1.55rem;
   padding: .26rem .62rem;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -604,7 +589,7 @@ img, svg { display: block; max-width: 100%; }
   margin: 0;
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
   font-weight: 500;
   letter-spacing: -.025em;
   line-height: 1.18;
@@ -613,10 +598,10 @@ img, svg { display: block; max-width: 100%; }
 
 .gp-system-description {
   max-width: 34rem;
-  margin: 1rem 0 2.5rem;
+  margin: .65rem 0 1.25rem;
   color: var(--ink-soft);
-  font-size: .92rem;
-  line-height: 1.65;
+  font-size: .86rem;
+  line-height: 1.5;
   text-wrap: pretty;
 }
 
@@ -626,7 +611,7 @@ img, svg { display: block; max-width: 100%; }
   justify-content: space-between;
   gap: 1rem;
   margin-top: auto;
-  padding-top: 1.2rem;
+  padding-top: .8rem;
   border-top: 1px solid var(--line);
   color: var(--accent-deep);
   font-size: .78rem;
@@ -640,7 +625,7 @@ img, svg { display: block; max-width: 100%; }
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: .8rem;
-  margin-top: 1.25rem;
+  margin-top: .85rem;
   color: var(--ink-muted);
   font-size: .77rem;
   line-height: 1.55;
@@ -669,15 +654,11 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 720px) {
   .gp-access {
     align-items: flex-start;
-    padding: 3.5rem 0 4.5rem;
+    padding: 2.5rem 0 3rem;
   }
 
   .gp-title {
-    font-size: clamp(2.6rem, 14vw, 4.2rem);
-  }
-
-  .gp-title-zh {
-    display: block;
+    font-size: clamp(2.4rem, 12vw, 3.4rem);
   }
 
   .gp-system-grid {
@@ -686,7 +667,7 @@ img, svg { display: block; max-width: 100%; }
 
   .gp-system-card {
     min-width: 0;
-    min-height: 17rem;
+    min-height: 13rem;
   }
 
   .gp-system-title,
@@ -695,7 +676,7 @@ img, svg { display: block; max-width: 100%; }
   }
 
   .gp-system-card-head {
-    margin-bottom: 2.25rem;
+    margin-bottom: 1.35rem;
   }
 
   .gp-security-note {

@@ -122,7 +122,7 @@
     margin-left: auto;
   }
   .lp-login {
-    display: none;
+    margin-left: 0;
   }
   .lang-toggle {
     margin-left: 0;
@@ -135,16 +135,5 @@
   .mobile-br { display: block; }
   .site-footer {
     padding: 1.75rem 0 calc(1.75rem + env(safe-area-inset-bottom));
-  }
-}
-
-@media (max-width: 400px) {
-  .brand {
-    width: 30px;
-    overflow: hidden;
-  }
-  .brand-logo {
-    width: auto;
-    max-width: none;
   }
 }
