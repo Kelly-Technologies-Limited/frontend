@@ -14,7 +14,7 @@ The frontend follows the same presentation model as Monitor:
 page -> tab -> card -> cell
 ```
 
-- **page**: one complete page. Current page: `home`.
+- **page**: one complete page. Current pages: `home` and `gp-login`.
 - **tab**: one top-level area inside a page. On this public site a tab is a
   page section, not necessarily a visible tab control.
 - **card**: one content or visual block inside a tab.
@@ -48,6 +48,17 @@ home page
   contact tab
     office_contact card
       eyebrow, address, email cells
+
+gp-login page
+  access tab
+    intro card
+      eyebrow, title, description cells
+    operations card
+      index, access, title, description, action cells
+    data_availability card
+      index, access, title, description, action cells
+    security_note card
+      mark, notice, return cells
 ```
 
 Cells stay inside card files until a cell type earns its own deeper Module.
@@ -74,6 +85,7 @@ python scripts/build_site.py
 The build writes:
 
 - `index.html`
+- `gp/index.html`
 - `assets/styles.css`
 
 The old monolithic `assets/script.js` entrypoint is intentionally gone. Runtime
@@ -83,12 +95,14 @@ behavior is split under `assets/scripts/`.
 
 ```text
 index.html                  # generated served home page
+gp/index.html               # generated GP Login launchpad
 palettes.html               # palette study / retheming playground
 scripts/build_site.py       # renders source fragments into served files
 src/chrome/                 # document head, header, footer
 src/pages/home/page.html    # home page shell and tab order
 src/pages/home/tabs/        # current tab_*.html sections
 src/pages/home/cards/       # current card_*.html files with data-cell annotations
+src/pages/gp/               # GP Login page, tab, and card source
 src/styles/                 # split CSS source
 assets/styles.css           # generated stylesheet, Monitor chrome source
 assets/scripts/             # split runtime behavior Modules
@@ -96,7 +110,7 @@ assets/logo.svg             # wordmark + icon
 assets/logo-light.svg       # light logo variant
 assets/favicon.svg
 assets/hero-bg.jpg
-gp/monitor/index.html       # static redirect to Monitor
+gp/monitor/index.html       # legacy redirect to GP Login
 CNAME
 .nojekyll
 ```

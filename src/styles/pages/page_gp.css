@@ -1,0 +1,240 @@
+/* GP Login */
+.gp-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.gp-access {
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  padding: clamp(4rem, 8vw, 7.5rem) 0;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(127,123,154,.1), transparent 32rem),
+    var(--bg);
+}
+
+.gp-access-inner {
+  width: 100%;
+  min-width: 0;
+}
+
+.gp-intro {
+  max-width: 46rem;
+  margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+}
+
+.gp-intro .section-eyebrow {
+  margin-bottom: 1.1rem;
+}
+
+.gp-title {
+  max-width: 14ch;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .98;
+  text-wrap: balance;
+}
+
+.gp-title-zh {
+  white-space: nowrap;
+}
+
+.gp-lede {
+  max-width: 38rem;
+  margin: 1.5rem 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(.98rem, 1.5vw, 1.08rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.gp-system-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.gp-system-card {
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  box-shadow: 0 14px 42px rgba(55,53,69,.035);
+  color: var(--ink);
+  transition:
+    border-color .22s var(--ease),
+    box-shadow .22s var(--ease),
+    transform .22s var(--ease);
+}
+
+.gp-system-card:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+  box-shadow: 0 20px 52px rgba(55,53,69,.08);
+  transform: translateY(-3px);
+}
+
+.gp-system-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.gp-system-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.gp-system-index {
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.gp-access-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: .26rem .62rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.gp-system-title {
+  max-width: 18ch;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.gp-system-description {
+  max-width: 34rem;
+  margin: 1rem 0 2.5rem;
+  color: var(--ink-soft);
+  font-size: .92rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.gp-system-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  color: var(--accent-deep);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.gp-security-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .8rem;
+  margin-top: 1.25rem;
+  color: var(--ink-muted);
+  font-size: .77rem;
+  line-height: 1.55;
+}
+
+.gp-security-note p {
+  margin: 0;
+}
+
+.gp-security-mark {
+  width: .48rem;
+  height: .48rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(127,123,154,.1);
+}
+
+.gp-return-link {
+  color: var(--ink-soft);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: .2em;
+}
+
+@media (max-width: 720px) {
+  .gp-access {
+    align-items: flex-start;
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .gp-title {
+    font-size: clamp(2.6rem, 14vw, 4.2rem);
+  }
+
+  .gp-title-zh {
+    display: block;
+  }
+
+  .gp-system-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gp-system-card {
+    min-width: 0;
+    min-height: 17rem;
+  }
+
+  .gp-system-title,
+  .gp-system-description {
+    overflow-wrap: anywhere;
+  }
+
+  .gp-system-card-head {
+    margin-bottom: 2.25rem;
+  }
+
+  .gp-security-note {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .gp-return-link {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gp-system-card {
+    transition: none;
+  }
+
+  .gp-system-card:hover {
+    transform: none;
+  }
+}

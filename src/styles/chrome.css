@@ -37,13 +37,18 @@
   white-space: nowrap;
   transition: color .18s var(--ease), border-color .18s var(--ease), background-color .18s var(--ease);
 }
-.monitor-login {
+.gp-login {
   margin-left: auto;
 }
 .lp-login {
   margin-left: .62rem;
 }
 .login-button:hover {
+  color: var(--accent-deep);
+  border-color: var(--accent);
+  background: rgba(127,123,154,.08);
+}
+.login-button.is-current {
   color: var(--accent-deep);
   border-color: var(--accent);
   background: rgba(127,123,154,.08);
@@ -113,11 +118,11 @@
     font-size: .72rem;
     letter-spacing: 0;
   }
-  .monitor-login {
+  .gp-login {
     margin-left: auto;
   }
   .lp-login {
-    margin-left: 0;
+    display: none;
   }
   .lang-toggle {
     margin-left: 0;
@@ -130,5 +135,16 @@
   .mobile-br { display: block; }
   .site-footer {
     padding: 1.75rem 0 calc(1.75rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 400px) {
+  .brand {
+    width: 30px;
+    overflow: hidden;
+  }
+  .brand-logo {
+    width: auto;
+    max-width: none;
   }
 }
