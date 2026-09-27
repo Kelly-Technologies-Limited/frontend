@@ -2,6 +2,7 @@
 
 ## 2026-09-27
 
+- Normalize bundled font license whitespace and line endings, retain original source checksums, and verify packaged checksums consistently on Windows and Linux.
 - Move canonical images/logo/favicon to `shared/assets` and website JavaScript to `src/scripts`. Build the public website only into `dist/site`, removing root generated pages and `gp/` while preserving public URLs. Generate shared UI brand resources directly from source, without a prior website build.
 - Package the existing Monitor presentation as `kellytec-ui==0.1.0` under `shared/ui`, preserving Page/Tab/Card/Cell and adding optional application toolbar/login content. Include generated brand resources and licensed offline fonts.
 - Switch GitHub Pages from branch-root publishing to the tested `dist/site` artifact. Pushes to `main` automatically build, test and deploy to `kellytec.io`; pull requests only build and test. Preserve the custom domain and keep the shared UI wheel in a separate artifact, outside the public website.
