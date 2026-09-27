@@ -1,0 +1,134 @@
+    [data-ui="button"],
+    .monitor-toolbar button,
+    .tab {
+      min-height: var(--monitor-tab-min-height);
+      border: 1px solid var(--monitor-line);
+      border-radius: var(--monitor-radius);
+      background: var(--monitor-surface-control);
+      color: var(--monitor-ink);
+      font: var(--monitor-tab-font);
+      padding: var(--monitor-tab-padding);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color var(--monitor-motion-feedback) var(--monitor-motion-easing), background var(--monitor-motion-feedback) var(--monitor-motion-easing), color var(--monitor-motion-feedback) var(--monitor-motion-easing);
+    }
+    [data-ui="button"]:hover,
+    .monitor-toolbar button:hover,
+    .tab:hover {
+      border-color: var(--monitor-line-strong);
+      background: var(--monitor-surface-raised);
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(var(--monitor-tab-count), minmax(0, 1fr));
+      gap: var(--monitor-card-gap);
+      margin-bottom: var(--monitor-card-gap);
+      overflow-x: auto;
+    }
+    .tab {
+      min-width: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 9px;
+      text-transform: uppercase;
+      letter-spacing: var(--monitor-tab-letter-spacing);
+      color: var(--monitor-muted);
+    }
+    .tab-icon {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      position: relative;
+      opacity: .72;
+    }
+    .tab-icon-dashboard {
+      border: 1px solid currentColor;
+      border-radius: var(--monitor-radius-icon);
+      box-shadow: inset 6px 0 0 currentColor, inset 0 -6px 0 var(--monitor-border-icon);
+    }
+    .tab-icon-console {
+      border: 1px solid currentColor;
+      border-radius: var(--monitor-radius-icon);
+    }
+    .tab-icon-console::before,
+    .tab-icon-console::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      right: 3px;
+      height: 1px;
+      background: currentColor;
+      box-shadow: 0 4px 0 currentColor;
+    }
+    .tab-icon-console::before {
+      top: 4px;
+    }
+    .tab-icon-console::after {
+      bottom: 3px;
+      opacity: .55;
+      box-shadow: none;
+    }
+    .tab-icon-glyph {
+      position: absolute;
+      inset: 1px;
+    }
+    .tab-icon-document .tab-icon-glyph {
+      border: 1px solid currentColor;
+      border-radius: var(--monitor-radius-icon);
+      background:
+        radial-gradient(circle at 3px 5px, currentColor 0 1px, transparent 1.1px),
+        radial-gradient(circle at 3px 9px, currentColor 0 1px, transparent 1.1px),
+        linear-gradient(currentColor, currentColor) 6px 4px / 6px 1px no-repeat,
+        linear-gradient(currentColor, currentColor) 6px 8px / 6px 1px no-repeat;
+    }
+    .tab-icon-target .tab-icon-glyph {
+      border: 1px solid currentColor;
+      border-radius: var(--monitor-radius-pill);
+      background:
+        linear-gradient(currentColor, currentColor) center / 10px 1px no-repeat,
+        linear-gradient(currentColor, currentColor) center / 1px 10px no-repeat;
+    }
+    .tab-icon-status {
+      position: absolute;
+      right: -1px;
+      bottom: -1px;
+      width: 7px;
+      height: 7px;
+      border: 1.5px solid var(--monitor-surface-raised);
+      border-radius: var(--monitor-radius-pill);
+      background: currentColor;
+      box-shadow: 0 0 0 1px var(--monitor-divider);
+    }
+    .tab-icon-status-active {
+      background: var(--monitor-ok);
+    }
+    .tab-icon-status-closed {
+      width: 9px;
+      height: 9px;
+      background: var(--monitor-unknown);
+    }
+    .tab-icon-status-closed::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 4px;
+      height: 2px;
+      border-left: 1.2px solid var(--monitor-surface-raised);
+      border-bottom: 1.2px solid var(--monitor-surface-raised);
+      transform: rotate(-45deg);
+    }
+    .tab-label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .tab[aria-selected="true"] {
+      color: var(--monitor-ink);
+      border-color: var(--monitor-line-strong);
+      background: var(--monitor-surface-raised);
+      box-shadow: inset 0 0 0 1px var(--monitor-surface-selected);
+    }

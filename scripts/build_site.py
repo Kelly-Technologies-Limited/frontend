@@ -1,8 +1,10 @@
-"""Build the static Kelly Technologies frontend from source fragments."""
+"""Build the public website into dist/site using an explicit file allowlist."""
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
+import shutil
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +18,22 @@ GP = SRC / "pages" / "gp"
 GP_CARDS = GP / "cards"
 GP_TABS = GP / "tabs"
 REDIRECTS = SRC / "redirects"
+ASSETS = ROOT / "shared" / "assets"
+
+# Public URLs stay stable; source locations are independent of served paths.
+PUBLIC_FILES = {
+    ".nojekyll": ROOT / ".nojekyll",
+    "CNAME": ROOT / "CNAME",
+    "palettes.html": ROOT / "palettes.html",
+    **{f"assets/{name}": ASSETS / name for name in (
+        "favicon.svg", "hero-bg.jpg", "logo.svg", "logo-light.svg",
+    )},
+    **{f"assets/scripts/{name}": SRC / "scripts" / name for name in (
+        "header_scroll.js", "reveal_on_scroll.js", "page_reveal.js",
+        "language.js", "cards/card_volatility_surface.js",
+    )},
+}
+GENERATED_FILES = ("index.html", "gp/index.html", "gp/monitor/index.html", "assets/styles.css")
 
 CSS_SOURCES = (
     SRC / "styles" / "tokens.css",
@@ -90,9 +108,11 @@ def render_document_head(
     )
 
 
-def render_header(*, asset_prefix: str, home_href: str, gp_current: bool) -> str:
+def render_header(
+    *, asset_prefix: str, home_href: str, gp_current: bool, frontend_root: Path = ROOT
+) -> str:
     return replace_all(
-        read(CHROME / "header.html"),
+        read(frontend_root / "src" / "chrome" / "header.html"),
         {
             "asset.prefix": asset_prefix,
             "navigation.home": home_href,
@@ -152,19 +172,43 @@ def render_gp_page() -> str:
     return replace_all(read(GP / "page.html"), page_values).rstrip() + "\n"
 
 
-def build_css() -> str:
-    return "\n\n".join(read(path).rstrip() for path in CSS_SOURCES).rstrip() + "\n"
+def build_css(frontend_root: Path = ROOT) -> str:
+    return "\n\n".join(
+        read(frontend_root / path.relative_to(ROOT)).rstrip() for path in CSS_SOURCES
+    ).rstrip() + "\n"
+
+
+def build_public_site(destination: Path) -> None:
+    """Copy only public assets and rendered pages, never repository directories."""
+    destination = destination.resolve()
+    if destination == ROOT or destination in ROOT.parents:
+        raise ValueError("Site output must be a separate artifact directory")
+    if destination.is_relative_to(ROOT) and not destination.is_relative_to(ROOT / "dist"):
+        raise ValueError("Site output inside this repository must be under dist/")
+    allowed = set(PUBLIC_FILES) | set(GENERATED_FILES)
+    if destination.exists():
+        unexpected = [p for p in destination.rglob("*") if p.is_file() and p.relative_to(destination).as_posix() not in allowed]
+        if unexpected:
+            raise ValueError("Site output contains files outside the public allowlist")
+    for name in allowed:
+        target = destination / name
+        if not target.resolve().is_relative_to(destination) or target.is_symlink():
+            raise ValueError("Site output must not traverse symbolic links")
+        target.parent.mkdir(parents=True, exist_ok=True)
+    for name, source in PUBLIC_FILES.items():
+        shutil.copyfile(source, destination / name)
+    for name, contents in {
+        "index.html": render_home_page(), "gp/index.html": render_gp_page(),
+        "gp/monitor/index.html": read(REDIRECTS / "gp_monitor.html"),
+        "assets/styles.css": build_css(),
+    }.items():
+        (destination / name).write_text(contents, encoding="utf-8", newline="\n")
 
 
 def main() -> None:
-    (ROOT / "index.html").write_text(render_home_page(), encoding="utf-8")
-    (ROOT / "gp").mkdir(exist_ok=True)
-    (ROOT / "gp" / "index.html").write_text(render_gp_page(), encoding="utf-8")
-    (ROOT / "gp" / "monitor").mkdir(parents=True, exist_ok=True)
-    (ROOT / "gp" / "monitor" / "index.html").write_text(
-        read(REDIRECTS / "gp_monitor.html"), encoding="utf-8"
-    )
-    (ROOT / "assets" / "styles.css").write_text(build_css(), encoding="utf-8")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=ROOT / "dist" / "site")
+    build_public_site(parser.parse_args().output)
 
 
 if __name__ == "__main__":

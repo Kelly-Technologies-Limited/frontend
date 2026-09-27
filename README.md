@@ -2,9 +2,24 @@
 
 Static website for **Kelly Technologies Limited** (`kellytec.io`).
 
+The repository also owns the installable [shared UI](shared/ui/README.md) used
+by Monitor and Kelly Technologies Research Platform. Build its wheel independently of the public
+website. `python scripts/build_site.py` produces `dist/site` from an
+explicit public-file allowlist. On every push to `main`,
+`.github/workflows/build-artifacts.yml` builds and tests the website and shared
+UI wheel, then deploys only the `dist/site` artifact to GitHub Pages at
+`https://kellytec.io/`. Pull requests build and test without deploying;
+`workflow_dispatch` on `main` can repeat the build and deployment.
+
+The repository's Pages publishing source is **GitHub Actions**, not a branch
+directory. Source/package files are excluded from the public website artifact.
+The shared UI wheel is uploaded as a separate Actions artifact; deploying the
+website does not publish that wheel to a Python package repository or update
+Monitor or Research Platform automatically.
+
 The served site is still plain HTML/CSS/JS on GitHub Pages. The editable
-source now lives under `src/` and is built into root-level `index.html` plus
-`assets/styles.css`.
+website source lives under `src/`, shared images under `shared/assets/`, and
+generated pages and runtime assets under `dist/site/` only.
 
 ## Mental model
 
@@ -75,35 +90,39 @@ exist yet.
 
 ## Build
 
-Edit source files under `src/`, then rebuild the served files:
+Edit website source under `src/` or shared images under `shared/assets/`, then
+build and preview the served files:
 
 ```bash
 cd frontend
 python scripts/build_site.py
+python -m http.server --directory dist/site
 ```
 
-The build writes:
+The build writes these pages and stylesheet, and copies only explicitly listed
+public assets into `dist/site/`:
 
-- `index.html`
-- `gp/index.html`
-- `gp/monitor/index.html`
-- `assets/styles.css`
+- `dist/site/index.html`
+- `dist/site/gp/index.html`
+- `dist/site/gp/monitor/index.html`
+- `dist/site/assets/styles.css`
 
-The root `index.html`, `gp/`, and `assets/styles.css` paths are tracked build
-artifacts because branch-based GitHub Pages serves the repository root. Their
-editable page and redirect sources remain under `src/`; do not edit the
-generated copies directly.
+Build artifacts are ignored by Git. There is no root `gp/` directory: GP Login
+is a useful public launchpad for the protected ALGO3 Operations and Data
+Availability monitors, with source in `src/pages/gp/`. Its public URL remains
+`/gp/`; `/gp/monitor/` still redirects there. The source directory layout does
+not change public URLs.
 
-The old monolithic `assets/script.js` entrypoint is intentionally gone. Runtime
-behavior is split under `assets/scripts/`.
+Website behavior lives in `src/scripts/` and is copied to the served
+`assets/scripts/` URLs. Shared images are copied from `shared/assets/` to served
+`assets/` URLs. The generated stylesheet comes from `src/styles/`.
 
 ## Project structure
 
 ```text
-index.html                  # generated served home page
-gp/index.html               # generated GP Login launchpad
 palettes.html               # palette study / retheming playground
-scripts/build_site.py       # renders source fragments into served files
+scripts/build_site.py       # builds allowlisted public artifact in dist/site/
+scripts/sync_frontend_chrome.py # generates UI brand resources from source
 src/chrome/                 # document head, header, footer
 src/pages/home/page.html    # home page shell and tab order
 src/pages/home/tabs/        # current tab_*.html sections
@@ -111,20 +130,20 @@ src/pages/home/cards/       # current card_*.html files with data-cell annotatio
 src/pages/gp/               # GP Login page, tab, and card source
 src/redirects/              # legacy redirect source
 src/styles/                 # split CSS source
-assets/styles.css           # generated stylesheet, Monitor chrome source
-assets/scripts/             # split runtime behavior Modules
-assets/logo.svg             # wordmark + icon
-assets/logo-light.svg       # light logo variant
-assets/favicon.svg
-assets/hero-bg.jpg
-gp/monitor/index.html       # generated legacy redirect to GP Login
+src/scripts/                # website runtime behavior
+shared/assets/              # canonical logos, favicon and imagery
+shared/ui/                  # installable Monitor / Research Platform UI package
+dist/site/                  # generated public website; ignored by Git
 CNAME
 .nojekyll
 ```
 
 ## Editing rules
 
-- Edit source fragments, not generated `index.html` or `assets/styles.css`.
+- Edit source fragments and shared assets, not generated files under `dist/`.
+- Generate UI brand resources directly from `src/chrome/`, `src/styles/`, and
+  `shared/assets/` with `python scripts/sync_frontend_chrome.py`; no website
+  build is needed. The wheel carries those resources for installed consumers.
 - Keep `site-header` and `site-footer` shapes stable unless you also check
   Monitor chrome extraction.
 - Preserve the existing CSS classes and ids when refactoring. The `data-page`,

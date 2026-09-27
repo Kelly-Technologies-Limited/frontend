@@ -1,0 +1,98 @@
+{
+  "css_sources": [
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Playfair+Display:wght@400..700&display=swap",
+    "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap&text=%E7%89%88%E6%9D%83%E6%89%80%E6%9C%89"
+  ],
+  "files": [
+    {
+      "file": "font-00.ttf",
+      "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n5ig.ttf",
+      "sha256": "a7fdc993f9f0387caedba4e42521136fa97e4c0837ae6239bf0413ccf8af00c2"
+    },
+    {
+      "file": "font-01.ttf",
+      "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJ8lc.ttf",
+      "sha256": "4fc14a73ca53ba9d32fd759ae1ca1a3133326035d0dd337862b3ee1633cc156e"
+    },
+    {
+      "file": "font-02.ttf",
+      "source": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAO8lc.ttf",
+      "sha256": "754dfc9d50cf7aabfb6b108d2c2f7d20a3f1f2cc6f6c01640c6728091272cec0"
+    },
+    {
+      "file": "font-03.ttf",
+      "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSD6llzAA.ttf",
+      "sha256": "6dbe082463cf749cfa057d45c3048c90f4df031496498e5b5bdfd0b6babb9d16"
+    },
+    {
+      "file": "font-04.ttf",
+      "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSD2FlzAA.ttf",
+      "sha256": "6f7a8c4219e021ff7c9131bc5f1f7af97bcd1436a59578d444a8cb92e9791742"
+    },
+    {
+      "file": "font-05.ttf",
+      "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSDNF5zAA.ttf",
+      "sha256": "5311c66fd6d04ae45671236f7eae667b671c06c1dc7e88d52c206e5fadd0fb21"
+    },
+    {
+      "file": "font-06.ttf",
+      "source": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSDDV5zAA.ttf",
+      "sha256": "e129a20e8ff7c907ffd07124b573e88c323b7b18afc934d4aa539a3e0f2fe100"
+    },
+    {
+      "file": "font-07.ttf",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.ttf",
+      "sha256": "1609a54fa3ad1abc8d0037132f73700333241ea0b65672079998e352f151dea7"
+    },
+    {
+      "file": "font-08.ttf",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKd3vUDQ.ttf",
+      "sha256": "b60ffb0ee2b4e09d71d67ff3ea16d6a23cf2e0cf637c5f4e36fff2e3b1465252"
+    },
+    {
+      "file": "font-09.ttf",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKebukDQ.ttf",
+      "sha256": "8ab6a1db2d7caeb46c742371da500d0f3de1dc6ec6bea2aef0106f678d7a1f8d"
+    },
+    {
+      "file": "font-10.ttf",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKeiukDQ.ttf",
+      "sha256": "adefc53e7b3d483f1fa5e85edd82b7689ca79db25a1f6786bd7949cdcfeec601"
+    },
+    {
+      "file": "font-11.ttf",
+      "source": "https://fonts.gstatic.com/l/font?kit=H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7SCqyWv64YP_K1l3c8sHdgsXG8&skey=37fe335b8fd815cc&v=v35",
+      "sha256": "cfb917c58d00e9a627112f7c34f12b69ddbae3aa652a25858a9b928961a5915d"
+    },
+    {
+      "file": "font-12.ttf",
+      "source": "https://fonts.gstatic.com/l/font?kit=H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7RcrCWv64YP_K1l3c8sHdgsXG8&skey=37fe335b8fd815cc&v=v35",
+      "sha256": "b4ce0c21afb6bf783cbbd671cd2fba62706930858aaba1aa2de4fb5ede223dfc"
+    },
+    {
+      "file": "font-13.ttf",
+      "source": "https://fonts.gstatic.com/l/font?kit=H4cyBXePl9DZ0Xe7gG9cyOj7uK2-n-D2rd4FY7RlrCWv64YP_K1l3c8sHdgsXG8&skey=37fe335b8fd815cc&v=v35",
+      "sha256": "b13cc1c6c97a6ff81c0be8775eb3694dc034eb7293ba1165654fae5d6b5c0c56"
+    },
+    {
+      "file": "ibmplexsans-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsans/OFL.txt",
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "file": "ibmplexmono-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/OFL.txt",
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "file": "playfairdisplay-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/playfairdisplay/OFL.txt",
+      "sha256": "566be814f8e96e93dfa16101331557eb6b5467e9e03f627c0910fe93ca12300e"
+    },
+    {
+      "file": "notoserifsc-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/notoserifsc/OFL.txt",
+      "sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6"
+    }
+  ]
+}

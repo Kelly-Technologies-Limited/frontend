@@ -1,0 +1,9 @@
+:root {
+  --monitor-layer-sticky: 1;
+  --monitor-layer-row-header: 2;
+  --monitor-layer-focus: 3;
+  --monitor-layer-column-header: 5;
+  --monitor-layer-corner: 7;
+  --monitor-layer-popover: 50;
+  --monitor-layer-tooltip: 100;
+}

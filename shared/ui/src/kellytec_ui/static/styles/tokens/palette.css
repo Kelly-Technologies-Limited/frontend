@@ -1,0 +1,96 @@
+/* Private primitive values. Consumers use semantic tokens, never this palette. */
+:root {
+  --palette-accent: #4f4c61;
+  --palette-border-chart: rgba(32, 36, 44, .10);
+  --palette-border-control: rgba(32, 36, 44, .18);
+  --palette-border-control-hover: rgba(32, 36, 44, .30);
+  --palette-border-default: rgba(32, 36, 44, .13);
+  --palette-border-field: #d9dde2;
+  --palette-border-hover: rgba(32, 36, 44, .28);
+  --palette-border-icon: rgba(32, 36, 44, .16);
+  --palette-border-spinner: rgba(32, 36, 44, .12);
+  --palette-border-strong: rgba(32, 36, 44, .22);
+  --palette-border-subtle: rgba(32, 36, 44, .06);
+  --palette-canvas: #f7f8f4;
+  --palette-chart-extent-negative: #772d32;
+  --palette-chart-extent-positive: #174966;
+  --palette-chart-grid-major: #e7eaee;
+  --palette-chart-grid-minor: #edf0f3;
+  --palette-chart-histogram: rgba(79, 76, 97, .62);
+  --palette-chart-hover: rgba(32, 36, 44, .44);
+  --palette-chart-inactive: #f1f2f4;
+  --palette-chart-initial: #242830;
+  --palette-chart-price-down: #bd4545;
+  --palette-chart-price-up: #288364;
+  --palette-chart-reference: #455766;
+  --palette-chart-reference-label: #354452;
+  --palette-chart-signed-negative: #c34f55;
+  --palette-chart-signed-positive: #357eae;
+  --palette-chart-zero: #a3acb7;
+  --palette-divider: rgba(32, 36, 44, .08);
+  --palette-divider-soft: rgba(32, 36, 44, .07);
+  --palette-feedback-warning: #98641e;
+  --palette-focus-halo: rgba(79, 76, 97, .12);
+  --palette-focus-medium: rgba(79, 76, 97, .25);
+  --palette-focus-soft: rgba(79, 76, 97, .22);
+  --palette-matrix-accent: rgba(79, 76, 97, .34);
+  --palette-matrix-grid: rgba(32, 36, 44, .075);
+  --palette-matrix-warning: rgba(211, 160, 55, .38);
+  --palette-status-critical: #bd3528;
+  --palette-status-critical-bg: rgba(189, 53, 40, .10);
+  --palette-status-critical-border: rgba(189, 53, 40, .34);
+  --palette-status-critical-border-card: rgba(189, 53, 40, .30);
+  --palette-status-critical-border-soft: rgba(189, 53, 40, .28);
+  --palette-status-critical-border-strong: rgba(189, 53, 40, .36);
+  --palette-status-positive: #16845d;
+  --palette-status-positive-bg: rgba(22, 132, 93, .10);
+  --palette-status-positive-border: rgba(22, 132, 93, .32);
+  --palette-status-positive-border-card: rgba(22, 132, 93, .24);
+  --palette-status-positive-border-compact: rgba(22, 132, 93, .28);
+  --palette-status-positive-border-medium: rgba(22, 132, 93, .30);
+  --palette-status-positive-border-soft: rgba(22, 132, 93, .22);
+  --palette-status-unknown: #626977;
+  --palette-status-unknown-bg: rgba(122, 129, 144, .12);
+  --palette-status-unknown-bg-soft: rgba(122, 129, 144, .08);
+  --palette-status-unknown-border: rgba(122, 129, 144, .28);
+  --palette-status-unknown-border-compact: rgba(122, 129, 144, .25);
+  --palette-status-unknown-border-soft: rgba(122, 129, 144, .24);
+  --palette-status-unknown-hover: rgba(122, 129, 144, .18);
+  --palette-status-warning: #9a6500;
+  --palette-status-warning-bg: rgba(154, 101, 0, .10);
+  --palette-status-warning-border: rgba(154, 101, 0, .30);
+  --palette-status-warning-border-soft: rgba(154, 101, 0, .28);
+  --palette-surface: #fcfcfc;
+  --palette-surface-button: rgba(255, 255, 255, .72);
+  --palette-surface-control: rgba(252, 252, 252, .9);
+  --palette-surface-detail: rgba(32, 36, 44, .018);
+  --palette-surface-highlight: rgba(255,255,255,.88);
+  --palette-surface-hover: rgba(32, 36, 44, .01);
+  --palette-surface-neutral: rgba(32, 36, 44, .035);
+  --palette-surface-raised: #fff;
+  --palette-surface-selected: rgba(32, 36, 44, .04);
+  --palette-surface-soft: rgba(252, 252, 252, .72);
+  --palette-surface-summary: rgba(32, 36, 44, .02);
+  --palette-surface-table: rgba(32, 36, 44, .025);
+  --palette-text-control: #6b7280;
+  --palette-text-primary: #20242c;
+  --palette-text-secondary: #616773;
+  --palette-text-tertiary: #686e79;
+  --palette-tooltip-shadow: #0003;
+  --palette-tooltip-surface: #26313d;
+}
+
+:root {
+  --palette-login-ink: #373545;
+  --palette-login-secondary: #676572;
+  --palette-login-border: rgba(55,53,69,.14);
+  --palette-login-error: #a33b2f;
+}
+
+:root { --palette-chart-zero-subtle: rgba(32, 36, 44, .38); }
+
+/* Necessary status text on tinted badge backgrounds (P4). */
+:root {
+  --palette-status-positive-text: #137752;
+  --palette-status-warning-text: #8a5900;
+}

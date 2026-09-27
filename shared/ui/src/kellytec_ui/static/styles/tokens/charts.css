@@ -1,0 +1,30 @@
+/* Chart semantics are independent of health/status even when initial values match. */
+:root {
+  --monitor-chart-extent-negative: var(--palette-chart-extent-negative);
+  --monitor-chart-extent-positive: var(--palette-chart-extent-positive);
+  --monitor-chart-grid-major: var(--palette-chart-grid-major);
+  --monitor-chart-grid-minor: var(--palette-chart-grid-minor);
+  --monitor-chart-histogram: var(--palette-chart-histogram);
+  --monitor-chart-hover: var(--palette-chart-hover);
+  --monitor-chart-inactive: var(--palette-chart-inactive);
+  --monitor-chart-initial: var(--palette-chart-initial);
+  --monitor-chart-price-down: var(--palette-chart-price-down);
+  --monitor-chart-price-up: var(--palette-chart-price-up);
+  --monitor-chart-reference: var(--palette-chart-reference);
+  --monitor-chart-reference-label: var(--palette-chart-reference-label);
+  --monitor-chart-signed-negative: var(--palette-chart-signed-negative);
+  --monitor-chart-signed-positive: var(--palette-chart-signed-positive);
+  --monitor-chart-zero: var(--palette-chart-zero);
+  --monitor-chart-halo: var(--monitor-surface-raised);
+  --monitor-chart-pnl: var(--monitor-text-primary);
+  --monitor-chart-categorical-1: var(--palette-status-positive);
+  --monitor-chart-categorical-2: var(--palette-accent);
+  --monitor-chart-categorical-3: var(--palette-status-critical);
+  --monitor-chart-categorical-4: var(--palette-status-warning);
+  --monitor-chart-axis-width: 1px;
+  --monitor-chart-grid-width: 1px;
+  --monitor-chart-line-width: 2px;
+  --monitor-chart-point-halo-width: 1.2px;
+}
+
+:root { --monitor-chart-zero-subtle: var(--palette-chart-zero-subtle); }

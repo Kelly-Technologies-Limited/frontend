@@ -1,0 +1,77 @@
+    .monitor-card-placeholder {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      color: var(--monitor-muted);
+      font: var(--monitor-type-supporting);
+    }
+    .monitor-card-loading {
+      background: var(--monitor-panel-soft);
+    }
+    .monitor-loading-placeholder {
+      min-height: 72px;
+      display: grid;
+      align-content: center;
+      gap: 12px;
+    }
+    .monitor-loading-placeholder span {
+      height: 8px;
+      width: 70%;
+      border-radius: var(--monitor-radius-control);
+      background: var(--monitor-line);
+    }
+    .monitor-loading-placeholder span:last-child { width: 45%; }
+    .monitor-request-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--monitor-muted);
+    }
+    .monitor-request-status[aria-hidden="true"] {
+      visibility: hidden;
+    }
+    .monitor-loading-spinner {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      border: 2px solid var(--monitor-border-spinner);
+      border-top-color: var(--monitor-accent);
+      border-radius: var(--monitor-radius-pill);
+      animation: monitor-spin var(--monitor-motion-spinner) linear infinite;
+    }
+    .monitor-card-error-shell {
+      border-color: var(--monitor-status-critical-border-soft);
+      background: var(--monitor-bad-bg);
+    }
+    .monitor-card-error {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      color: var(--monitor-bad);
+      font: var(--monitor-type-supporting);
+    }
+    @keyframes monitor-spin {
+      to { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .monitor-loading-spinner { animation: none; }
+    }
+    .monitor-global-message {
+      margin-bottom: var(--monitor-card-gap);
+      border: var(--monitor-card-border);
+      border-radius: var(--monitor-radius);
+      padding: 9px 12px;
+      background: var(--monitor-panel);
+      color: var(--monitor-muted);
+      font: var(--monitor-type-feedback);
+    }
+    .monitor-global-message.critical {
+      color: var(--monitor-bad);
+      border-color: var(--monitor-status-critical-border-soft);
+      background: var(--monitor-bad-bg);
+    }
+    .monitor-global-message.warning {
+      color: var(--monitor-warn);
+      border-color: var(--monitor-status-warning-border-soft);
+      background: var(--monitor-warn-bg);
+    }

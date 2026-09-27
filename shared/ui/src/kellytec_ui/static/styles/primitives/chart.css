@@ -1,0 +1,44 @@
+[data-ui-chart] text { font: var(--monitor-type-chart-tick); fill: var(--monitor-muted); }
+[data-ui-chart] [data-ui-type="chart-axis"] { font: var(--monitor-type-chart-axis); }
+[data-ui-chart] [data-ui-type="chart-reference"] { font: var(--monitor-type-chart-reference); }
+[data-ui-chart] [data-ui-tooltip]:focus-visible { outline: 2px solid var(--monitor-accent); outline-offset: 2px; }
+.monitor-chart-legend { display: inline-flex; align-items: center; gap: 4px; }
+.monitor-chart-legend i { width: 8px; height: 8px; flex: none; border-radius: var(--monitor-radius-pill); }
+.monitor-chart-legend b, .monitor-chart-legend em { font: inherit; }
+
+    [data-ui-chart-part="axis"] {
+      stroke: var(--monitor-border-icon);
+      stroke-width: var(--monitor-chart-axis-width);
+      vector-effect: non-scaling-stroke;
+    }
+    [data-ui-chart-part="grid"] {
+      stroke: var(--monitor-divider-soft);
+      stroke-width: var(--monitor-chart-axis-width);
+      vector-effect: non-scaling-stroke;
+    }
+    [data-ui-chart-part="series"] {
+      fill: none;
+      stroke: var(--monitor-accent);
+      stroke-width: var(--monitor-chart-line-width);
+      vector-effect: non-scaling-stroke;
+    }
+    [data-ui-chart-part="point"] {
+      fill: var(--monitor-accent);
+      stroke: var(--monitor-surface-raised);
+      stroke-width: var(--monitor-chart-axis-width);
+      cursor: crosshair;
+    }
+    [data-ui-chart-part="bar"] {
+      fill: var(--monitor-chart-histogram);
+      pointer-events: none;
+    }
+    [data-ui-chart-part="hit"] {
+      fill: transparent;
+      cursor: crosshair;
+    }
+    [data-ui-chart-part="point"]:focus,
+    [data-ui-chart-part="bin"]:focus [data-ui-chart-part="bar"] {
+      outline: none;
+      stroke: var(--monitor-ink);
+      stroke-width: var(--monitor-chart-line-width);
+    }

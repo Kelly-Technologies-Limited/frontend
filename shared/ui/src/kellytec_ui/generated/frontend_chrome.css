@@ -1,0 +1,83 @@
+/* Generated from frontend/src/styles/. Run scripts/sync_frontend_chrome.py. */
+:root {
+  --bg:           #FCFCFC;
+  --paper:        #FFFFFF;
+
+  --ink:          #373545;
+  --ink-soft:     rgba(55,53,69,.68);
+  --ink-muted:    rgba(55,53,69,.48);
+
+  --line:         rgba(55,53,69,.10);
+  --line-strong:  rgba(55,53,69,.24);
+
+  --accent:       #7F7B9A;
+  --accent-soft:  #9A97B4;
+  --accent-deep:  #4F4C61;
+  --accent-ink:   #FCFCFC;
+
+  --font-serif: "Playfair Display", "Noto Serif SC", "Iowan Old Style", Georgia, serif;
+  --brand-font-sans:  Arial, Helvetica, sans-serif;
+  --brand-font-mono:  Arial, Helvetica, sans-serif;
+
+  --container: 1080px;
+  --pad: clamp(1.25rem, 4vw, 2.5rem);
+
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in oklab, #FCFCFC 82%, transparent);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s var(--ease);
+  color: var(--ink);
+}
+
+.site-header.scrolled { border-bottom-color: var(--line); }
+
+.nav {
+  display: flex;
+  align-items: center;
+  height: 68px;
+}
+
+.brand { display: inline-flex; align-items: center; flex: 0 0 auto; color: var(--ink); }
+
+.brand-logo { display: block; height: 30px; width: auto; }
+
+.site-footer {
+  flex-shrink: 0;
+  background: var(--bg);
+  color: var(--ink-muted);
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer-disclaimer {
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+@media (max-width: 560px) {
+  .nav {
+      gap: .5rem;
+    }
+
+  .site-footer {
+      padding: 1.75rem 0 calc(1.75rem + env(safe-area-inset-bottom));
+    }
+}

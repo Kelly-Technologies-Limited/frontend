@@ -1,0 +1,23 @@
+    .monitor-summary {
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--monitor-divider);
+      border-radius: var(--monitor-radius);
+      background: var(--monitor-surface-table);
+    }
+    .monitor-summary-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .monitor-summary-head { justify-content: space-between; }
+    .monitor-summary-fields {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin: 10px 0 0;
+    }
+    .monitor-summary-field { min-width: 0; }
+    .monitor-summary-field dt { color: var(--monitor-muted); }
+    .monitor-summary-field dd { margin: 4px 0 0; }
