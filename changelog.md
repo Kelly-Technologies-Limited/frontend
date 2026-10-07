@@ -1,3 +1,13 @@
+## 2026-10-07 — Shared UI 0.1.1 release
+
+- Release the opt-in New York EDT/EST time labels as an immutable kellytec-ui 0.1.1 wheel for Monitor, preserving default ET labels for existing callers.
+- Validate the shared UI and website tests before publishing and coordinate downstream package pins.
+
+## 2026-10-07 — Explicit New York DST labels
+
+- Add `show_timezone` to shared NY date/time display values. Opted-in instant labels distinguish EST and EDT; existing callers retain ET and naive business times remain unshifted.
+- Monitor Operations opts in at its display boundary; Data Availability defaults are unchanged.
+
 # Changelog
 
 ## 2026-09-27

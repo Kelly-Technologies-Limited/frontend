@@ -20,6 +20,8 @@ class DisplayValue(TypedDict):
     currency: NotRequired[str]
     label: NotRequired[str]
     show_plus: NotRequired[bool]
+    show_timezone: NotRequired[bool]
+    fractional_seconds: NotRequired[Literal[3]]
     compact: NotRequired[Literal["millions"]]
 
 
@@ -30,6 +32,8 @@ def display_value(
     currency: str | None = None,
     label: str | None = None,
     show_plus: bool = False,
+    show_timezone: bool = False,
+    fractional_seconds: Literal[3] | None = None,
     compact: Literal["millions"] | None = None,
 ) -> DisplayValue:
     """Build a strict semantic value without guessing business meaning."""
@@ -46,6 +50,10 @@ def display_value(
         raise ValueError("label is only valid for status display values")
     if kind != "quantity" and show_plus:
         raise ValueError("show_plus is only valid for quantity display values")
+    if fractional_seconds is not None and (kind not in {"datetime_et", "time_et"} or fractional_seconds != 3):
+        raise ValueError("fractional_seconds requires a time display and millisecond precision")
+    if show_timezone and kind not in {"datetime_et", "time_et", "minute_et"}:
+        raise ValueError("show_timezone is only valid for NY time display values")
     if kind != "money" and compact is not None:
         raise ValueError("compact is only valid for money display values")
 
@@ -56,6 +64,10 @@ def display_value(
         result["label"] = label
     if show_plus:
         result["show_plus"] = True
+    if show_timezone:
+        result["show_timezone"] = True
+    if fractional_seconds is not None:
+        result["fractional_seconds"] = fractional_seconds
     if compact is not None:
         result["compact"] = compact
     return result

@@ -1,6 +1,6 @@
 # Shared UI
 
-`kellytec-ui==0.1.0` owns the Monitor presentation used by both Monitor apps
+`kellytec-ui==0.1.1` owns the Monitor presentation used by both Monitor apps
 and Kelly Technologies Research Platform. Runtime Python dependencies are standard library only.
 The package contains the original Page → Tab → Card → Cell contracts,
 renderers, CSS tokens, JavaScript, templates, generated brand and fonts.
@@ -11,7 +11,7 @@ Build from the frontend repository:
 ```sh
 python scripts/sync_frontend_chrome.py
 python -m build --wheel shared/ui
-python -m pip install --no-deps shared/ui/dist/kellytec_ui-0.1.0-py3-none-any.whl
+python -m pip install --no-deps shared/ui/dist/kellytec_ui-0.1.1-py3-none-any.whl
 python -m pytest -q shared/ui/tests tests
 ```
 

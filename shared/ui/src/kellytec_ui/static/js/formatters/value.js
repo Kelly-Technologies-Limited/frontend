@@ -33,10 +33,11 @@
     const raw = String(value).trim();
     if (!/(?:z|[+-]\d{2}:?\d{2})$/i.test(raw)) {
       const match = raw.replace(/\s*ET$/i, "").replace("T", " ")
-        .match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})(?::(\d{2}))?/);
+        .match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})(?::(\d{2}))?(?:\.(\d+))?/);
       return match ? {
         year: match[1], month: match[2], day: match[3],
-        hour: match[4], minute: match[5], second: match[6] || "00"
+        hour: match[4], minute: match[5], second: match[6] || "00",
+        fractionalSecond: ((match[7] || "") + "000").slice(0, 3)
       } : null;
     }
     const instant = new Date(raw);
@@ -50,19 +51,26 @@
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
-      second: "2-digit"
+      second: "2-digit",
+      timeZoneName: "short",
+      fractionalSecondDigits: 3
     }).formatToParts(instant).reduce(function (result, part) {
       result[part.type] = part.value;
       return result;
     }, {});
   }
 
+  function zone(parts, spec) {
+    return spec.show_timezone && parts.timeZoneName ? parts.timeZoneName : "ET";
+  }
+
   function date(parts) {
     return parts.year + "-" + parts.month + "-" + parts.day;
   }
 
-  function clock(parts, seconds) {
-    return parts.hour + ":" + parts.minute + (seconds ? ":" + parts.second : "");
+  function clock(parts, seconds, spec) {
+    const fraction = seconds && spec.fractional_seconds === 3 ? "." + parts.fractionalSecond : "";
+    return parts.hour + ":" + parts.minute + (seconds ? ":" + parts.second : "") + fraction;
   }
 
   const formatters = {
@@ -134,15 +142,15 @@
     },
     datetime_et: function (spec) {
       const parts = etParts(spec.value);
-      return parts ? date(parts) + " " + clock(parts, true) + " ET" : EMPTY;
+      return parts ? date(parts) + " " + clock(parts, true, spec) + " " + zone(parts, spec) : EMPTY;
     },
     time_et: function (spec) {
       const parts = etParts(spec.value);
-      return parts ? clock(parts, true) + " ET" : EMPTY;
+      return parts ? clock(parts, true, spec) + " " + zone(parts, spec) : EMPTY;
     },
     minute_et: function (spec) {
       const parts = etParts(spec.value);
-      return parts ? clock(parts, false) + " ET" : EMPTY;
+      return parts ? clock(parts, false, spec) + " " + zone(parts, spec) : EMPTY;
     },
     status: function (spec) {
       const state = String(spec.value || "unknown").toLowerCase();
