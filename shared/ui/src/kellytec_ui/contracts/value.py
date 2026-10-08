@@ -21,6 +21,7 @@ class DisplayValue(TypedDict):
     label: NotRequired[str]
     show_plus: NotRequired[bool]
     show_timezone: NotRequired[bool]
+    fraction_digits: NotRequired[int]
     fractional_seconds: NotRequired[Literal[3]]
     compact: NotRequired[Literal["millions"]]
 
@@ -33,6 +34,7 @@ def display_value(
     label: str | None = None,
     show_plus: bool = False,
     show_timezone: bool = False,
+    fraction_digits: int | None = None,
     fractional_seconds: Literal[3] | None = None,
     compact: Literal["millions"] | None = None,
 ) -> DisplayValue:
@@ -50,6 +52,12 @@ def display_value(
         raise ValueError("label is only valid for status display values")
     if kind != "quantity" and show_plus:
         raise ValueError("show_plus is only valid for quantity display values")
+    if fraction_digits is not None and (
+        kind not in {"percent_points", "percent_ratio"}
+        or type(fraction_digits) is not int
+        or not 0 <= fraction_digits <= 20
+    ):
+        raise ValueError("fraction_digits requires a percentage and an integer from 0 to 20")
     if fractional_seconds is not None and (kind not in {"datetime_et", "time_et"} or fractional_seconds != 3):
         raise ValueError("fractional_seconds requires a time display and millisecond precision")
     if show_timezone and kind not in {"datetime_et", "time_et", "minute_et"}:
@@ -66,6 +74,8 @@ def display_value(
         result["show_plus"] = True
     if show_timezone:
         result["show_timezone"] = True
+    if fraction_digits is not None:
+        result["fraction_digits"] = fraction_digits
     if fractional_seconds is not None:
         result["fractional_seconds"] = fractional_seconds
     if compact is not None:

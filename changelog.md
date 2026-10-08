@@ -1,3 +1,9 @@
+## 2026-10-08 — Shared UI 0.1.2 release
+
+- Add optional `fraction_digits` for percentage descriptors (integer 0–20), preserving existing formatting for callers that omit it.
+- Make cards inside direct grid slots share the grid's spacing, without changing slots outside grids.
+- Build/install the 0.1.2 wheel locally; 18 frontend/shared UI tests and 1136 Monitor consumer tests pass. Validate 15 cross-tab and 36 Order/Position browser cases. Publish the validated immutable wheel to the existing Python Artifact Registry before downstream Monitor builds.
+
 ## 2026-10-07 — Shared UI 0.1.1 release
 
 - Release the opt-in New York EDT/EST time labels as an immutable kellytec-ui 0.1.1 wheel for Monitor, preserving default ET labels for existing callers.

@@ -13,6 +13,9 @@ UI wheel, then deploys only the `dist/site` artifact to GitHub Pages at
 
 The repository's Pages publishing source is **GitHub Actions**, not a branch
 directory. Source/package files are excluded from the public website artifact.
+Shared UI 0.1.2 adds opt-in fixed percentage precision and
+consistent card-grid slot spacing; see [its contract](shared/ui/README.md).
+
 The shared UI wheel is uploaded as a separate Actions artifact; deploying the
 website does not publish that wheel to a Python package repository or update
 Monitor or Research Platform automatically.

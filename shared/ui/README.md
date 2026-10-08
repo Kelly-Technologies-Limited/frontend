@@ -1,6 +1,6 @@
 # Shared UI
 
-`kellytec-ui==0.1.1` owns the Monitor presentation used by both Monitor apps
+`kellytec-ui==0.1.2` owns the Monitor presentation used by both Monitor apps
 and Kelly Technologies Research Platform. Runtime Python dependencies are standard library only.
 The package contains the original Page → Tab → Card → Cell contracts,
 renderers, CSS tokens, JavaScript, templates, generated brand and fonts.
@@ -11,7 +11,7 @@ Build from the frontend repository:
 ```sh
 python scripts/sync_frontend_chrome.py
 python -m build --wheel shared/ui
-python -m pip install --no-deps shared/ui/dist/kellytec_ui-0.1.1-py3-none-any.whl
+python -m pip install --no-deps shared/ui/dist/kellytec_ui-0.1.2-py3-none-any.whl
 python -m pytest -q shared/ui/tests tests
 ```
 
@@ -56,3 +56,9 @@ pushes to `main`. Pull requests never deploy. Pages uses GitHub Actions publishi
 not the branch root. The separate wheel artifact still needs publication through
 the approved Python package repository before a consumer release; a website
 deployment does not update Monitor or Research Platform.
+
+Version 0.1.2 adds explicit percentage precision. Percentage descriptors may
+opt into `fraction_digits` (integer 0–20); both minimum and maximum fraction
+digits then use that value. Omitting it preserves the existing 0–1 digit format.
+Other display kinds reject the option. Shared card grids also clear bottom
+margins on cards directly inside grid slots, matching direct-child cards.

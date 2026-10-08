@@ -28,6 +28,13 @@
     });
   }
 
+  function percent(spec, scale) {
+    const digits = spec.fraction_digits;
+    if (digits !== undefined && (!Number.isInteger(digits) || digits < 0 || digits > 20)) return EMPTY;
+    const parsed = number(spec.value);
+    return parsed === null ? EMPTY : grouped(parsed * scale, digits === undefined ? 0 : digits, digits === undefined ? 1 : digits) + "%";
+  }
+
   function etParts(value) {
     if (missing(value)) return null;
     const raw = String(value).trim();
@@ -103,12 +110,10 @@
       return (parsed < 0 ? "-" : "") + symbol + abs + (spec.compact === "millions" ? "M" : "");
     },
     percent_ratio: function (spec) {
-      const parsed = number(spec.value);
-      return parsed === null ? EMPTY : grouped(parsed * 100, 0, 1) + "%";
+      return percent(spec, 100);
     },
     percent_points: function (spec) {
-      const parsed = number(spec.value);
-      return parsed === null ? EMPTY : grouped(parsed, 0, 1) + "%";
+      return percent(spec, 1);
     },
     bytes: function (spec) {
       let parsed = number(spec.value);

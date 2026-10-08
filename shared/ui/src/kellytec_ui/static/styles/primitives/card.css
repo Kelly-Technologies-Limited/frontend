@@ -11,7 +11,8 @@
       margin-bottom: var(--monitor-card-gap);
       box-shadow: 0 1px 0 var(--monitor-surface-highlight) inset;
     }
-    .monitor-card-grid > .monitor-card { margin-bottom: 0; }
+    .monitor-card-grid > .monitor-card,
+    .monitor-card-grid > .monitor-card-slot > .monitor-card { margin-bottom: 0; }
     /* Independently rendered cards still fill their shared grid row. */
     .monitor-card-slot {
       display: flex;
