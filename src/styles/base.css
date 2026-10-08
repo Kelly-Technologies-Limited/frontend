@@ -2,6 +2,8 @@
 * { box-sizing: border-box; }
 html {
   min-height: 100%;
+  /* Keep centered content aligned between long and short pages. */
+  scrollbar-gutter: stable;
   background: var(--bg);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
