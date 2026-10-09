@@ -1,6 +1,8 @@
 /* Private primitive values. Consumers use semantic tokens, never this palette. */
 :root {
   --palette-accent: #4f4c61;
+  /* Brand purple from frontend chrome's --accent, available without chrome. */
+  --palette-brand-accent: #7f7b9a;
   --palette-border-chart: rgba(32, 36, 44, .10);
   --palette-border-control: rgba(32, 36, 44, .18);
   --palette-border-control-hover: rgba(32, 36, 44, .30);

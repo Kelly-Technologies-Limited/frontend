@@ -21,6 +21,12 @@
   --monitor-chart-categorical-2: var(--palette-accent);
   --monitor-chart-categorical-3: var(--palette-status-critical);
   --monitor-chart-categorical-4: var(--palette-status-warning);
+  --monitor-chart-series-1: var(--palette-brand-accent);
+  --monitor-chart-series-2: var(--palette-chart-signed-positive);
+  --monitor-chart-series-3: var(--palette-chart-price-up);
+  --monitor-chart-series-4: var(--palette-feedback-warning);
+  --monitor-chart-filled: var(--palette-accent);
+  --monitor-chart-canceled: var(--monitor-chart-inactive);
   --monitor-chart-axis-width: 1px;
   --monitor-chart-grid-width: 1px;
   --monitor-chart-line-width: 2px;

@@ -39,13 +39,36 @@
   let removalObserver;
   UI.bindCard = function (card, context) {
     const renderer = UI.rendererFor(card);
-    if (renderer && renderer.bind) renderer.bind(card || {}, context || {});
-    if (!UI.bindChartText || !UI.bindTooltip || typeof document.querySelector !== "function") return;
+    if (!UI.bindChartText || !UI.bindTooltip || typeof document.querySelector !== "function") {
+      if (renderer && renderer.bind) renderer.bind(card || {}, context || {});
+      return;
+    }
     const root = Array.from(document.querySelectorAll('[data-ui="card"]')).find(function (node) { return node.dataset.card === card.id; });
     if (!root) return;
     if (bindings.has(root)) bindings.get(root)();
-    const textCleanup = UI.bindChartText(root), tipCleanup = UI.bindTooltip(root);
-    bindings.set(root, function () { textCleanup(); tipCleanup(); bindings.delete(root); });
+    let textCleanup, tipCleanup, rendererCleanup;
+    function bindShared() {
+      if (textCleanup) textCleanup();
+      if (tipCleanup) tipCleanup();
+      textCleanup = UI.bindChartText(root);
+      tipCleanup = UI.bindTooltip(root);
+    }
+    function dispose() {
+      root.removeEventListener('monitor-chart-layout', bindShared);
+      if (typeof rendererCleanup === 'function') rendererCleanup();
+      if (textCleanup) textCleanup();
+      if (tipCleanup) tipCleanup();
+      bindings.delete(root);
+    }
+    root.addEventListener('monitor-chart-layout', bindShared);
+    try {
+      if (renderer && renderer.bind) rendererCleanup = renderer.bind(card || {}, context || {});
+      bindShared();
+    } catch (error) {
+      dispose();
+      throw error;
+    }
+    bindings.set(root, dispose);
     if (!removalObserver) {
       removalObserver = new MutationObserver(function () {
         bindings.forEach(function (dispose, node) { if (!node.isConnected) dispose(); });

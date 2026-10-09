@@ -50,6 +50,6 @@ def test_invalid_percent_precision_is_rejected(digits):
     ) == ["—"]
 
 
-def test_precision_does_not_extend_other_display_kinds():
+def test_precision_does_not_extend_nonnumeric_display_kinds():
     with pytest.raises(ValueError, match="fraction_digits"):
-        display_value("decimal", 1, fraction_digits=1)
+        display_value("text", 1, fraction_digits=1)

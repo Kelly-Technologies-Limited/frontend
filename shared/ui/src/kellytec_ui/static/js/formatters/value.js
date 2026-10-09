@@ -22,10 +22,23 @@
   function grouped(value, minimum, maximum) {
     const parsed = number(value);
     if (parsed === null) return EMPTY;
-    return parsed.toLocaleString("en-US", {
+    // A rounded negative zero is never an adverse or negative economic value.
+    const rounded = Math.abs(parsed) < 0.5 * Math.pow(10, -maximum) ? 0 : parsed;
+    return rounded.toLocaleString("en-US", {
       minimumFractionDigits: minimum,
       maximumFractionDigits: maximum
     });
+  }
+
+  function precision(spec, minimum, maximum) {
+    const digits = spec.fraction_digits;
+    if (digits === undefined) return [minimum, maximum];
+    return Number.isInteger(digits) && digits >= 0 && digits <= 20 ? [digits, digits] : null;
+  }
+
+  function numeric(spec, minimum, maximum) {
+    const digits = precision(spec, minimum, maximum);
+    return digits ? grouped(spec.value, digits[0], digits[1]) : EMPTY;
   }
 
   function percent(spec, scale) {
@@ -88,26 +101,26 @@
       return grouped(spec.value, 0, 0);
     },
     decimal: function (spec) {
-      return grouped(spec.value, 0, 2);
+      return numeric(spec, 0, 2);
     },
     quantity: function (spec) {
       const parsed = number(spec.value);
       if (parsed === null) return EMPTY;
-      return (parsed > 0 && spec.show_plus ? "+" : "") + grouped(parsed, 0, 4);
+      const formatted = numeric(spec, 0, 4);
+      return formatted === EMPTY ? EMPTY : (parsed > 0 && spec.show_plus ? "+" : "") + formatted;
     },
     price: function (spec) {
-      return grouped(spec.value, 2, 2);
+      return numeric(spec, 2, 2);
     },
     money: function (spec) {
       const parsed = number(spec.value);
       if (parsed === null || !spec.currency) return EMPTY;
       const scaled = spec.compact === "millions" ? Math.abs(parsed) / 1000000 : Math.abs(parsed);
-      const abs = scaled.toLocaleString("en-US", spec.compact === "millions" ? {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      } : { maximumFractionDigits: 0 });
+      const digits = precision(spec, spec.compact === "millions" ? 2 : 0, spec.compact === "millions" ? 2 : 0);
+      if (!digits) return EMPTY;
+      const abs = grouped(scaled, digits[0], digits[1]);
       const symbol = spec.currency === "USD" ? "$" : spec.currency + " ";
-      return (parsed < 0 ? "-" : "") + symbol + abs + (spec.compact === "millions" ? "M" : "");
+      return (parsed < 0 && scaled >= 0.5 * Math.pow(10, -digits[1]) ? "-" : "") + symbol + abs + (spec.compact === "millions" ? "M" : "");
     },
     percent_ratio: function (spec) {
       return percent(spec, 100);
@@ -139,6 +152,14 @@
       if (parsed < 1000) return grouped(parsed, 0, 0) + " ms";
       if (parsed < 60000) return grouped(parsed / 1000, 0, 1) + " s";
       return grouped(parsed / 60000, 0, 1) + " min";
+    },
+    duration_seconds: function (spec) {
+      const parsed = number(spec.value), formatted = numeric(spec, 2, 2);
+      return parsed === null || parsed < 0 || formatted === EMPTY ? EMPTY : formatted + " s";
+    },
+    ratio: function (spec) {
+      const formatted = numeric(spec, 2, 2);
+      return formatted === EMPTY ? EMPTY : formatted + "×";
     },
     trading_date: function (spec) {
       if (missing(spec.value)) return EMPTY;

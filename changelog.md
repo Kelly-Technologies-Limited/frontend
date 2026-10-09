@@ -1,3 +1,12 @@
+## 2026-10-09 — Shared UI 0.1.3 release
+
+- Support explicit heading lines and the existing record-header typography in shared tables.
+- Add opt-in equal-width tables with wrapping headings and responsive plot binding with renderer cleanup. Separate brand-purple/chart-blue dynamic series from existing categorical roles.
+
+- Add explicit ratio and fixed-second display values and opt-in precision for money, prices, quantities and decimals, preserving existing defaults.
+- Add shared numeric table alignment, label/value rows and dynamic category colors/patterns for an arbitrary observed catalog.
+- Release the immutable 0.1.3 package for Monitor's four independent archive-statistics cards, preserving existing consumer defaults. Validate shared UI and website tests and compare the formal wheel payload with the qualified 0.1.3.dev4 candidate before publication.
+
 ## 2026-10-08 — Shared UI 0.1.2 release
 
 - Add optional `fraction_digits` for percentage descriptors (integer 0–20), preserving existing formatting for callers that omit it.

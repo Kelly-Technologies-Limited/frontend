@@ -1,6 +1,6 @@
 # Shared UI
 
-`kellytec-ui==0.1.2` owns the Monitor presentation used by both Monitor apps
+`kellytec-ui==0.1.3` owns the Monitor presentation used by both Monitor apps
 and Kelly Technologies Research Platform. Runtime Python dependencies are standard library only.
 The package contains the original Page → Tab → Card → Cell contracts,
 renderers, CSS tokens, JavaScript, templates, generated brand and fonts.
@@ -11,7 +11,7 @@ Build from the frontend repository:
 ```sh
 python scripts/sync_frontend_chrome.py
 python -m build --wheel shared/ui
-python -m pip install --no-deps shared/ui/dist/kellytec_ui-0.1.2-py3-none-any.whl
+python -m pip install --no-deps shared/ui/dist/kellytec_ui-0.1.3-py3-none-any.whl
 python -m pytest -q shared/ui/tests tests
 ```
 
@@ -60,5 +60,44 @@ deployment does not update Monitor or Research Platform.
 Version 0.1.2 adds explicit percentage precision. Percentage descriptors may
 opt into `fraction_digits` (integer 0–20); both minimum and maximum fraction
 digits then use that value. Omitting it preserves the existing 0–1 digit format.
-Other display kinds reject the option. Shared card grids also clear bottom
+Shared card grids also clear bottom
 margins on cards directly inside grid slots, matching direct-child cards.
+
+Version 0.1.3 extends `fraction_digits` to `decimal`, `quantity`,
+`price`, `money`, `ratio`, and `duration_seconds`. Existing omitted-precision
+defaults are unchanged. `ratio` appends × and `duration_seconds` always uses
+seconds (both default to two decimals); rounded negative zero is displayed as
+zero. Currency remains mandatory for money, and missing values remain `—`.
+
+`UI.table` accepts either existing string headings or `{label, numeric: true}`
+metadata. Numeric columns align right with tabular digits and fixed-unit values;
+`UI.labelValues([{label, value: DisplayValue}, ...])` aligns multiple measurements
+in one cell. Applications still own the row contents and their semantic units.
+The optional fourth argument `{equalColumns: true}` uses equal-width columns
+without a scroll-forcing minimum width, permits heading wraps, and preserves
+numeric alignment. Existing callers retain their automatic column sizing.
+The same options accept `headerType: 'table-header-record'` to match the 11px
+Order/Position record headers. Heading metadata may provide `lines`, such as
+`{label: 'Win Rate', lines: ['Win', 'Rate'], numeric: true}`, for explicit line
+breaks. Each line is escaped and can wrap further when its column is narrow.
+
+`UI.chartSeriesStyle(key, catalog)` assigns styles to opaque keys without a
+business registry. Existing keys retain their style for the browser session;
+new keys append. Shared categorical colors combine with stripe patterns after
+the first four categories. Use the same descriptor with `chartSeriesFill`,
+`chartSeriesDefinitions`, and `chartLegendItem({series, label})`. SVG definition
+namespaces must be unique for each mounted chart. Card bindings continue to own
+chart-text scaling and accessible tooltip cleanup.
+
+Dynamic series start with the website brand purple (`--palette-brand-accent`,
+available in the shared palette without the website chrome) and the existing
+chart blue, followed by chart green and amber. They have separate `series-*`
+roles, so the existing `categorical-*` roles used by other chart semantics keep
+their colors.
+
+`UI.bindResponsiveChart(root, selector, draw)` observes plot containers and calls
+`draw(width)` with their actual pixel width. The returned SVG markup replaces
+only the plot host. Shared card bindings refresh text and keyboard tooltips
+after redraws. A renderer's `bind` may return a cleanup function; `bindCard`
+disposes it before rebinding or removing that card. Hidden plots wait until
+they have a positive width.

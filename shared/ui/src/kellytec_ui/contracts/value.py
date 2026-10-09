@@ -8,6 +8,7 @@ from typing import Literal, NotRequired, TypedDict
 DisplayKind = Literal[
     "text", "integer", "decimal", "quantity", "price", "money",
     "percent_ratio", "percent_points", "bytes", "gigabytes", "duration_ms",
+    "duration_seconds", "ratio",
     "trading_date", "datetime_et", "time_et", "minute_et", "status",
 ]
 DISPLAY_KINDS = frozenset(DisplayKind.__args__)
@@ -53,11 +54,11 @@ def display_value(
     if kind != "quantity" and show_plus:
         raise ValueError("show_plus is only valid for quantity display values")
     if fraction_digits is not None and (
-        kind not in {"percent_points", "percent_ratio"}
+        kind not in {"percent_points", "percent_ratio", "decimal", "quantity", "price", "money", "duration_seconds", "ratio"}
         or type(fraction_digits) is not int
         or not 0 <= fraction_digits <= 20
     ):
-        raise ValueError("fraction_digits requires a percentage and an integer from 0 to 20")
+        raise ValueError("fraction_digits requires a supported numeric kind and an integer from 0 to 20")
     if fractional_seconds is not None and (kind not in {"datetime_et", "time_et"} or fractional_seconds != 3):
         raise ValueError("fractional_seconds requires a time display and millisecond precision")
     if show_timezone and kind not in {"datetime_et", "time_et", "minute_et"}:

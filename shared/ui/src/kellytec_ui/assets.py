@@ -43,6 +43,8 @@ _SCRIPT_FILES = (
     "components/tooltip.js",
     "charts/svg.js",
     "charts/text.js",
+    "charts/responsive.js",
+    "charts/series.js",
     "charts/legend.js",
     "components/cell.js",
     "components/loading.js",

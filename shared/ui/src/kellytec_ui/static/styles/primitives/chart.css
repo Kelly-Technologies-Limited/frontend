@@ -5,6 +5,12 @@
 .monitor-chart-legend { display: inline-flex; align-items: center; gap: 4px; }
 .monitor-chart-legend i { width: 8px; height: 8px; flex: none; border-radius: var(--monitor-radius-pill); }
 .monitor-chart-legend b, .monitor-chart-legend em { font: inherit; }
+.monitor-chart-legends { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 12px; }
+.monitor-chart-scroll { overflow-x: auto; }
+.monitor-chart-scroll > svg { display: block; width: 100%; }
+.monitor-chart-footer { color: var(--monitor-muted); font: var(--monitor-type-supporting); margin-top: 12px; }
+[data-ui-chart] [data-ui-type="chart-value"] { fill: var(--monitor-ink); font-variant-numeric: tabular-nums; }
+[data-ui-chart] [data-ui-chart-part="category-bar"] { vector-effect: non-scaling-stroke; stroke-width: var(--monitor-chart-axis-width); }
 
     [data-ui-chart-part="axis"] {
       stroke: var(--monitor-border-icon);
